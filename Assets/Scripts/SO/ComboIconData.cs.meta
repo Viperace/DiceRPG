@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0fcd21c34b2d117409467821dc9b4985
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - doubleIcon: {fileID: 21300000, guid: 2ee84863a109245b69e2fd89e8a2f3b6, type: 3}
+  - tripleIcon: {fileID: 21300000, guid: 016c69be74b1f47ba867b326a3fb3cb9, type: 3}
+  - fourAKindIcon: {fileID: 21300000, guid: d479fbb4b257a410db2d438a01ab62bb, type: 3}
+  - allSameIcon: {fileID: 21300000, guid: cec60a7055c064a05995347d1814bd9c, type: 3}
+  - sumEqualIcon: {fileID: 21300000, guid: 8a41aad2c32f3411297f930f920a0089, type: 3}
+  - straightIcon: {fileID: 21300000, guid: f1bc7b9e25fd74f11b4144407c1c9d70, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
