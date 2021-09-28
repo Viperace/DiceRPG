@@ -1,0 +1,72 @@
+
+change color for diff bs
+BS Cost to hire
+
+Questing
+-> Lock up hero
+-> Requirement
+	race/level/class
+-> Reward
+	- gold
+	- fame 
+	- xp
+	
+	- Skill unlock
+	- Unlock blacksmith level  [o]
+	- Upgrade to weapon 
+	
+	- Ingredient?
+	- Unlock builindg ? [X]
+	
+
+
+Boss
+-> Time limt
+-> Dramatic entrance, set fire on stuff
+destroy some buildings
+-> Stand on one corner does nothing
+-> Send quest to challenge him , or he will destroy everything
+
+Boss Mechanics
+- D
+
+Loader
+
+************
+Low level enemy
+low level gear
+	-> Easy kill, make money
+	
+	-> chance to upgrade
+	-> Possible action
+		- Buy new dice 	<- OP ?		(mkt place)  <- OP only if slot is avail
+		- sell existing				(mkt place)
+		- Unlock slot 				(mkt place)	
+		
+		- Upgrade existing	
+			min, max		(smith)
+		- repair existing	(smith)	
+				
+		
+		-> Crazy idea
+		- Attach specials	(Shrine)
+		- Demote existing 
+		- Add maxHP			(Shrine) 
+		
+		First choice at fix stage ->
+			A) TAke New dice
+			B) OPen up new slot + Gold 
+
+Weapon idea
+	- Shield only 
+	- Weapon only 
+	- Both 
+
+
+Journey Choice		
+	- Low lvl enemy
+	- High lvl enemy 
+	- Store 
+	Crazy Idea !
+	- Gamble gold vs enemy 
+	

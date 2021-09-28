@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 0
+    path: Assets/Scenes/Battle Scene - _debug.unity
+    guid: 19a7e635b6b091e48b685fefc1cf739d
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: c9a7cca3ca9810e409becf8a7dbadef8
+  - enabled: 1
+    path: Assets/Scenes/Battle Scene.unity
+    guid: 8a7d51349adda444ab7e95c5088579cd
+  - enabled: 1
+    path: Assets/Scenes/Journey Scene.unity
+    guid: 99f50a0f084c7ad478e8a75d0ef6521b
+  - enabled: 1
+    path: Assets/Scenes/Blacksmith Scene.unity
+    guid: 3bbe0b97d6db06e47abba001e8f50b23
+  - enabled: 1
+    path: Assets/Scenes/Inn Scene.unity
+    guid: 88fdcb2e03fca1241875f3bbe1d58356
+  - enabled: 1
+    path: Assets/Scenes/Market Scene.unity
+    guid: 8a74cb530ef15e14488907d8fafbb46a
+  - enabled: 1
+    path: Assets/Scenes/Shrine Scene.unity
+    guid: 3b1f31fe10a6a5d4398ca4468263310f
+  - enabled: 1
+    path: Assets/Scenes/Reward Scene.unity
+    guid: 23a91e476933a9e4a8acf2eefdad3571
+  m_configObjects: {}
