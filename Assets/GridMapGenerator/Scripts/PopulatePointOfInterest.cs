@@ -187,7 +187,7 @@ namespace CubeMapGenerator
             allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 3);
 
             // 2nd pass
-            //allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 6);
+            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 6);
 
             // Clamp all coordinate bound
             for (int i = 0; i < allCoords.Count; i++)

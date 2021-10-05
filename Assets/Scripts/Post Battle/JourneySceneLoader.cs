@@ -26,7 +26,7 @@ public class JourneySceneLoader : MonoBehaviour
         mapGenerator = FindObjectOfType<GridMapGenerator>();
         poiGenerator = FindObjectOfType<PopulatePointOfInterest>();
 
-        StartCoroutine(GenerateMapProcedure());
+        GenerateMap();
     }
 
     IEnumerator GenerateMapProcedure()
@@ -55,7 +55,7 @@ public class JourneySceneLoader : MonoBehaviour
     }
 
     [Button("Spawn Paths", ButtonSizes.Large)]
-    public void _SpwanPath()
+    public void GenerateMap()
     {
         routeGenerator = FindObjectOfType<RouteGenerator>();
         mapGenerator = FindObjectOfType<GridMapGenerator>();

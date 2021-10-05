@@ -50,7 +50,6 @@ namespace CubeMapGenerator
         
         public int NumberOfNodes { get { return nodes.Count; } }
 
-        
     }
 
     public class GraphWithDepthNode : Graph
