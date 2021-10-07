@@ -20,9 +20,12 @@ public class TweenLocalPosition : MonoBehaviour
 
     void OnValidate()
     {
-        StopCoroutine(tweenCoroutine);
-        StartCoroutine(tweenCoroutine);
-        seq.Kill();
+        if (tweenCoroutine != null)
+        {
+            StopCoroutine(tweenCoroutine);
+            StartCoroutine(tweenCoroutine);
+            seq.Kill();
+        }
     }
 
     IEnumerator BeginTween(float delay)
@@ -46,9 +49,9 @@ public class TweenLocalPosition : MonoBehaviour
 
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(this.transform.DOLocalMove(actualStartPos, duration * distToStart / dist).SetEase(Ease.OutQuad));
+        seq.Append(this.transform.DOLocalMove(actualStartPos, duration * distToStart / dist).SetEase(Ease.InOutQuad));
         seq.Append(this.transform.DOLocalMove(actualEndPos, duration * 1f ).SetEase(Ease.OutQuad));
-        seq.Append(this.transform.DOLocalMove(origPos, duration * distToEnd / dist).SetEase(Ease.OutQuad));
+        seq.Append(this.transform.DOLocalMove(origPos, duration * distToEnd / dist).SetEase(Ease.InOutQuad));
         seq.SetLoops(-1);
     }
 }

@@ -20,6 +20,7 @@ public class JourneySceneLoader : MonoBehaviour
     PopulatePointOfInterest poiGenerator;
 
     GraphTestor graphTestor;
+    GraphWithDepthNode graph;
     void Start()
     {
         routeGenerator = FindObjectOfType<RouteGenerator>();
@@ -45,7 +46,7 @@ public class JourneySceneLoader : MonoBehaviour
               shrinePrefab,
               rewardPrefab,
               START_PREFAB);
-        GraphWithDepthNode graph = graphTestor.CreateGraph();
+        graph = graphTestor.CreateGraph();
 
         yield return null;
 
@@ -61,8 +62,17 @@ public class JourneySceneLoader : MonoBehaviour
         mapGenerator = FindObjectOfType<GridMapGenerator>();
         poiGenerator = FindObjectOfType<PopulatePointOfInterest>();
 
-
         StartCoroutine(GenerateMapProcedure());
+    }
+
+    public Node GetMapStartingNode()
+    {
+        return graph.GetNodesAtDepth(0)[0];
+    }
+
+    public Graph GetGraph()
+    {
+        return this.graph;
     }
 }
 
@@ -78,6 +88,8 @@ public class GraphTestor
     protected GameObject rewardPrefab = null;
     protected GameObject innPrefab = null;
     protected GameObject shrinePrefab = null;
+
+    Graph graph;
 
     public GraphTestor() { }
     public GraphTestor(

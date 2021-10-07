@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f8dd56230662747b9da965ff808423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseUIprefab: {fileID: 4356042821633674226, guid: e672698b83b2ec64e998af0872791113, type: 3}
+  isPutBaseUI: 1
+  representedJourney: 3
 --- !u!1001 &615491259644761107
 PrefabInstance:
   m_ObjectHideFlags: 0

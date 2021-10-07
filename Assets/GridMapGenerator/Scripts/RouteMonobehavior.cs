@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Splines;
+using CubeMapGenerator;
 
 public class RouteMonobehavior : MonoBehaviour
 {
     SplineComputer spline;
     List<GameObject> pointGOs;
+    CubeMapGenerator.Node startNode;
+    CubeMapGenerator.Node endNode;
 
     float distanceBetweenTwoGO ;
     float heightOffsetFromTile;
@@ -16,11 +19,14 @@ public class RouteMonobehavior : MonoBehaviour
         spline = GetComponent<SplineComputer>();
     }
 
-    public void Init(Vector3[] waypoints, float distanceBetweenTwoGO, float heightOffsetFromTile)
+
+    public void Init(CubeMapGenerator.Node startNode, CubeMapGenerator.Node endNode, Vector3[] waypoints, float distanceBetweenTwoGO, float heightOffsetFromTile)
     {
-        StartCoroutine(InitLate( waypoints,  distanceBetweenTwoGO,  heightOffsetFromTile));
+        this.endNode = endNode;
+        this.startNode = startNode;
+        StartCoroutine(InitLate(startNode, endNode, waypoints, distanceBetweenTwoGO, heightOffsetFromTile));
     }
-    IEnumerator InitLate(Vector3[] waypoints, float distanceBetweenTwoGO, float heightOffsetFromTile)
+    IEnumerator InitLate(CubeMapGenerator.Node startNode, CubeMapGenerator.Node endNode, Vector3[] waypoints, float distanceBetweenTwoGO, float heightOffsetFromTile)
     {
         yield return null;
 
@@ -39,6 +45,7 @@ public class RouteMonobehavior : MonoBehaviour
             points[i].normal = Vector3.up;
         }
         spline.SetPoints(points);
+
     }
 
     // TODO:
@@ -87,5 +94,34 @@ public class RouteMonobehavior : MonoBehaviour
     public float RouteLength
     {
         get { return spline.CalculateLength(); }    
+    }
+
+    public CubeMapGenerator.Node StartNode
+    {
+        get { return startNode; }
+    }
+    public CubeMapGenerator.Node EndNode
+    {
+        get { return endNode; }
+    }
+
+    public SplineComputer Spline { get { return spline; } }
+
+    public bool Contains(CubeMapGenerator.Node node)
+    {
+        if (this.startNode == node | this.endNode == node)
+            return true;
+        else
+            return false;
+    }
+
+    public bool Contains(CubeMapGenerator.Node node1, CubeMapGenerator.Node node2)
+    {
+        if (this.startNode == node1 & this.endNode == node2)
+            return true;
+        else if (this.startNode == node2 & this.endNode == node1)
+            return true;
+        else
+            return false;
     }
 }

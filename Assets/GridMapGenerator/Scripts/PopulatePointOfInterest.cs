@@ -104,7 +104,6 @@ namespace CubeMapGenerator
             }
 
             yield return null;
-            //yield return new WaitForSeconds(0.5f);
 
             //---  Place Routes
             RouteGenerator routeGenerator = FindObjectOfType<RouteGenerator>();
@@ -115,7 +114,7 @@ namespace CubeMapGenerator
             {
                 Vector3 start = con.node1.gameObject.transform.position;
                 Vector3 end = con.node2.gameObject.transform.position;
-                routeGenerator.GenerateRoute(start, end);
+                routeGenerator.GenerateRoute(start, end, con.node1, con.node2);
             }
 
         }
@@ -404,7 +403,7 @@ namespace CubeMapGenerator
             {
                 Vector3 start = con.node1.gameObject.transform.position;
                 Vector3 end = con.node2.gameObject.transform.position;
-                routeGenerator.GenerateRoute(start, end);
+                routeGenerator.GenerateRoute(start, end, con.node1, con.node2);
             }
 
         }

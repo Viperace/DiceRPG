@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777828077454431173}
   m_LocalRotation: {x: -0, y: -0, z: -0.37936783, w: 0.925246}
-  m_LocalPosition: {x: -0.7, y: 1.5, z: -0.03}
+  m_LocalPosition: {x: -0.7, y: 0.5, z: -0.03}
   m_LocalScale: {x: 1, y: 1.1000001, z: 1}
   m_Children: []
   m_Father: {fileID: 829021708690889865}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2469476736597063628}
   m_LocalRotation: {x: -0, y: -0, z: 0.38268343, w: 0.9238796}
-  m_LocalPosition: {x: 0.81, y: 1.5, z: -0.03}
+  m_LocalPosition: {x: 0.81, y: 0.5, z: -0.03}
   m_LocalScale: {x: 1, y: 1.1000001, z: 1}
   m_Children: []
   m_Father: {fileID: 829021708690889865}
@@ -175,9 +175,9 @@ GameObject:
   - component: {fileID: 829021708690889865}
   - component: {fileID: -2889851225184080028}
   - component: {fileID: -7215577236794341500}
-  - component: {fileID: 6323575814790818381}
   - component: {fileID: -8328059739981354381}
   - component: {fileID: 6339768147680604654}
+  - component: {fileID: 7770226753277700267}
   m_Layer: 0
   m_Name: CrossSword
   m_TagString: Untagged
@@ -233,19 +233,6 @@ MonoBehaviour:
   endPos: {x: 0, y: 2, z: 0}
   duration: 3
   shuffleDuration: 1
---- !u!135 &6323575814790818381
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9076608498131798874}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2
-  m_Center: {x: 0, y: 2.1, z: 0}
 --- !u!114 &-8328059739981354381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +257,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f8dd56230662747b9da965ff808423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseUIprefab: {fileID: 4356042821633674226, guid: e672698b83b2ec64e998af0872791113, type: 3}
+  isPutBaseUI: 1
+--- !u!136 &7770226753277700267
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076608498131798874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0}

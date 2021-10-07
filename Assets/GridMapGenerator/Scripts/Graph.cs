@@ -48,6 +48,18 @@ namespace CubeMapGenerator
             return false;
         }
         
+        public List<Connector> GetConnetorsOf(Node node)
+        {
+            List<Connector> foundConnectors = new List<Connector>();
+            foreach (var con in connectors)
+            {
+                if (con.Contains(node))
+                    foundConnectors.Add(con);
+            }
+
+            return foundConnectors;
+        }
+
         public int NumberOfNodes { get { return nodes.Count; } }
 
     }
@@ -103,13 +115,23 @@ namespace CubeMapGenerator
             connectedNodes = new HashSet<Node>();
             this.prefab = prefab;
         }
-        public void AssignGameObject(GameObject go) => this.gameObject = go;
+        public void AssignGameObject(GameObject go)
+        {
+            this.gameObject = go;
+
+            MapWayPoint waypoint = go.GetComponent<MapWayPoint>();
+            if (waypoint)
+                waypoint.SetupNode(this);
+        }
 
         public void ConnectTo(Node node)
         {
             if(node != this & !connectedNodes.Contains(node))
-            {
+            { 
+                // Cross add each other
                 connectedNodes.Add(node);
+                node.ConnectTo(this);
+                return;
             }
         }
 
@@ -117,6 +139,11 @@ namespace CubeMapGenerator
         {
             foreach (var item in nodes)
                 ConnectTo(item);
+        }
+
+        public bool IsConnectedTo(Node node)
+        {
+            return connectedNodes.Contains(node);
         }
     }
 
@@ -144,6 +171,14 @@ namespace CubeMapGenerator
             if (this.node1 == other.node1 & this.node2 == other.node2)
                 return true;
             else if (this.node1 == other.node2 & this.node2 == other.node1)
+                return true;
+            else
+                return false;
+        }
+
+        public bool Contains(Node node)
+        {
+            if (this.node1 == node || this.node2 == node)
                 return true;
             else
                 return false;

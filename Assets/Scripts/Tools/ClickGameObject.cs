@@ -6,11 +6,12 @@ public class ClickGameObject : MonoBehaviour
 {
     Ray ray;
     RaycastHit hit;
-
+    PlayerAvatar playerAvatar;
     void Start()
     {
-        
+        playerAvatar = FindObjectOfType<PlayerAvatar>();
     }
+
 
     void Update()
     {
@@ -22,6 +23,7 @@ public class ClickGameObject : MonoBehaviour
                 MapWayPoint poi = hit.transform.GetComponent<MapWayPoint>();
                 if (poi)
                 {
+                    playerAvatar.MoveToNode(poi.GetNode, () => poi.ReachDestinationAction());
                     Debug.Log("Player click on " + poi.gameObject.name);
                 }
             }

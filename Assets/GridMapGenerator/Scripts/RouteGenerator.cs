@@ -78,7 +78,7 @@ namespace CubeMapGenerator
             // Initialize Route
             GameObject routeGO = Instantiate(routeMonobehaviorPrefab);
             RouteMonobehavior routeBehavior = routeGO.GetComponent<RouteMonobehavior>();
-            routeBehavior.Init(waypoints3d.ToArray(), distanceBetweenTwoGO, heightOffsetFromTile);
+            routeBehavior.Init(null, null, waypoints3d.ToArray(), distanceBetweenTwoGO, heightOffsetFromTile);
 
             // Spwan Each rounte
             routeBehavior.CreateRouteOnScene(pathPrefab, waypointPrefab, map);
@@ -86,6 +86,33 @@ namespace CubeMapGenerator
 
         }
 
+        public void GenerateRoute(Node startNode, Node endNode)
+        {
+            Init();
+
+            // Generate coordinates
+            List<Vector2> waypoints = GenerateWaypointWorldPosd();
+
+            // Spawn gameObject based on coords;
+            List<Vector3> waypoints3d = new List<Vector3>();
+            foreach (var pos in waypoints)
+            {
+                GameObject tileGO = mapGenerator.FindNearestGameObjectAtWorldPos(new Vector3(pos.x, 0, pos.y));
+                waypoints3d.Add(tileGO.transform.position);
+            }
+
+            // Initialize Route
+            GameObject routeGO = Instantiate(routeMonobehaviorPrefab);
+            RouteMonobehavior routeBehavior = routeGO.GetComponent<RouteMonobehavior>();
+            routeBehavior.Init(startNode, endNode, waypoints3d.ToArray(), distanceBetweenTwoGO, heightOffsetFromTile);
+
+            // Spwan Each rounte
+            routeBehavior.CreateRouteOnScene(pathPrefab, waypointPrefab, map);
+            routeBehavior.transform.SetParent(gameObjectHolder.transform);
+
+        }
+
+        // TODEL: 
         public void GenerateRoute(Vector3 start, Vector3 end)
         {
             Init();
@@ -96,6 +123,18 @@ namespace CubeMapGenerator
 
             // Gen
             GenerateRoute();
+        }
+
+        public void GenerateRoute(Vector3 start, Vector3 end, Node startNode, Node endNode)
+        {
+            Init();
+
+            // Redefine
+            startPoint = map.FindNearestCoordinateFromWorldPosition(start);
+            endPoint = map.FindNearestCoordinateFromWorldPosition(end);
+
+            // Gen
+            GenerateRoute( startNode,  endNode);
         }
 
         /// <summary>
