@@ -14,20 +14,23 @@ public class JourneySceneLoader : MonoBehaviour
     public GameObject rewardPrefab;
     public GameObject START_PREFAB;
 
-    RouteGenerator routeGenerator;
     GridMapGenerator mapGenerator;
     Map map;
     PopulatePointOfInterest poiGenerator;
 
-    GraphTestor graphTestor;
+    GraphAndNodeImplementor graphTestor;
     GraphWithDepthNode graph;
     void Start()
     {
-        routeGenerator = FindObjectOfType<RouteGenerator>();
         mapGenerator = FindObjectOfType<GridMapGenerator>();
         poiGenerator = FindObjectOfType<PopulatePointOfInterest>();
 
-        GenerateMap();
+        // If no map available (new game), then generate
+        PlayerMapHolder playerMap = FindObjectOfType<PlayerMapHolder>();
+        if(playerMap)
+            LoadMap(playerMap);
+        else
+            GenerateNewMap();
     }
 
     IEnumerator GenerateMapProcedure()
@@ -39,7 +42,7 @@ public class JourneySceneLoader : MonoBehaviour
         yield return null;
 
         // Create Graph
-        graphTestor = new GraphTestor(blacksmithPrefab,
+        graphTestor = new GraphAndNodeImplementor(blacksmithPrefab,
               battlePrefab,
               innPrefab,
               shopPrefab,
@@ -53,19 +56,37 @@ public class JourneySceneLoader : MonoBehaviour
         // Spawn POI based on graph (and routes)
         poiGenerator.SpawnPOIbyGraph(graph);
 
+        // Attach Component
+        if (!mapGenerator.Holder.GetComponent<PlayerMapHolder>())
+        {
+            PlayerMapHolder mapHolder = mapGenerator.Holder.AddComponent<PlayerMapHolder>();
+            mapHolder.SetGraph(graph);            
+        }
+
+        // Set poi stuff transform to be child of the map
+        poiGenerator.Holder.transform.SetParent(mapGenerator.Holder.transform);
+
+        // Set route stuff as child of map, make sure they are PERSISTANCE across scenes
+        RouteGenerator routeGenerator = FindObjectOfType<RouteGenerator>();
+        routeGenerator.Holder.transform.SetParent(mapGenerator.Holder.transform);
+        MapWayPoint.BaseUIholder.transform.SetParent(mapGenerator.Holder.transform);
     }
 
     [Button("Spawn Paths", ButtonSizes.Large)]
-    public void GenerateMap()
+    public void GenerateNewMap()
     {
-        routeGenerator = FindObjectOfType<RouteGenerator>();
         mapGenerator = FindObjectOfType<GridMapGenerator>();
         poiGenerator = FindObjectOfType<PopulatePointOfInterest>();
 
         StartCoroutine(GenerateMapProcedure());
     }
 
-    public Node GetMapStartingNode()
+    void LoadMap(PlayerMapHolder playerMap)
+    {
+        this.graph = (GraphWithDepthNode) playerMap.GetGraph;
+    }
+
+    public DepthNode GetMapStartingNode()
     {
         return graph.GetNodesAtDepth(0)[0];
     }
@@ -79,7 +100,7 @@ public class JourneySceneLoader : MonoBehaviour
 /* Implement Graph
  */
 
-public class GraphTestor
+public class GraphAndNodeImplementor
 {
     protected GameObject startPointPrefab = null;
     protected GameObject battlePrefab = null;
@@ -91,8 +112,8 @@ public class GraphTestor
 
     Graph graph;
 
-    public GraphTestor() { }
-    public GraphTestor(
+    public GraphAndNodeImplementor() { }
+    public GraphAndNodeImplementor(
              GameObject blacksmithPrefab,
              GameObject battlePrefab,
              GameObject innPrefab,

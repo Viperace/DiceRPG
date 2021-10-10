@@ -7,15 +7,28 @@ public class MapWayPoint : MonoBehaviour
 {
     [SerializeField] GameObject baseUIprefab;
     [SerializeField] bool isPutBaseUI = true;
+    public bool allowLoadScene { get; set; }
     bool IsReachableByPlayer = true;
     MeshRenderer baseMeshRenderer;
-    GameObject baseUI;
+    
+    static GameObject baseUIholder;
 
-    Node node = null;
+    DepthNode node = null;
+
+    void Awake()
+    {
+        // Attach Parent
+        baseUIholder = GameObject.Find("Base UI Holder");
+        if (!baseUIholder)
+            baseUIholder = new GameObject("Base UI Holder");
+    }
+
     void Start()
     {
         if (isPutBaseUI)
             PutBaseUI();
+
+        allowLoadScene = true;
     }
 
     void Update()
@@ -32,16 +45,18 @@ public class MapWayPoint : MonoBehaviour
     void PutBaseUI()
     {
         GameObject baseUI = Instantiate(baseUIprefab);
-        //baseUI.transform.SetParent(this.transform);
-        //baseUI.transform.localPosition = Vector3.zero;
         baseMeshRenderer = baseUI.GetComponent<MeshRenderer>();
 
         baseUI.transform.position = this.transform.position; // Dont parent it so its animation is separated
+        baseUI.transform.SetParent(baseUIholder.transform);
     }
 
-    public void UpdatePlayerLocation(Node playerNode)
+    public void UpdatePlayerLocation(DepthNode playerNode)
     {
-        if (node.IsConnectedTo(playerNode))
+        // Check if it is reachable by playear, which has these criteria
+        // 1) its connected to this node
+        // 2) its depth larger than current player node
+        if (node.IsConnectedTo(playerNode) && playerNode.depth < this.node.depth)
             IsReachableByPlayer = true;
         else
             IsReachableByPlayer = false;
@@ -49,14 +64,19 @@ public class MapWayPoint : MonoBehaviour
 
     public void SetupNode(Node node)
     {
-        this.node = node;
+        this.node = (DepthNode) node;
     }
 
     public Node GetNode { get { return node; } }
 
+    public static GameObject BaseUIholder { get { return baseUIholder; } }
+
     [SerializeField] JourneyEnum representedJourney;
     public void ReachDestinationAction()
     {
+        Debug.Log("Hit Reach ReachDestinationAction ");
+        if (!allowLoadScene) return; 
+
         switch (representedJourney)
         {
             case JourneyEnum.CombatEncounter:

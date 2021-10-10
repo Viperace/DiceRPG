@@ -64,7 +64,7 @@ namespace CubeMapGenerator
             map._GenerateRandom();
 
             // Create / Search holder, delete and create new 
-            GameObject holder = GameObject.Find("GridMap_Holder");
+            holder = GameObject.Find("GridMap_Holder");
             if (holder)
                 DestroyImmediate(holder);  // Delete existing
             holder = new GameObject("GridMap_Holder");
@@ -84,10 +84,11 @@ namespace CubeMapGenerator
 
         }
 
+        [SerializeField] GameObject holder;
         public void PopulateMapView()
         {
             // Create / Search holder, delete and create new 
-            GameObject holder = GameObject.Find("GridMap_Holder");
+            holder = GameObject.Find("GridMap_Holder");
             if (holder)
                 DestroyImmediate(holder);  // Delete existing
             holder = new GameObject("GridMap_Holder");
@@ -386,6 +387,8 @@ namespace CubeMapGenerator
             Coordinate closestCoord = map.FindNearestCoordinateFromCoord(coord);
             return GetGameObject(closestCoord);
         }
+
+        public GameObject Holder { get { return holder; } }
         #endregion
     }
 

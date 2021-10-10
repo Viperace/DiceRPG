@@ -27,8 +27,10 @@ public class MySceneManager : MonoBehaviour
 
     public void LoadGeneral(string scenename)
     {
+        ProgressSceneLoader progressSceneLoader = GetComponent<ProgressSceneLoader>();
         Debug.Log("sceneName to load: " + scenename);
-        SceneManager.LoadScene(scenename);
+        
+        progressSceneLoader.LoadScene(scenename);
     }
 
     public void LoadMainMenu() => LoadGeneral(mainMenuScene);

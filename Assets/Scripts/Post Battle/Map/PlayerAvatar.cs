@@ -8,39 +8,67 @@ using Sirenix.OdinInspector;
 public class PlayerAvatar : MonoBehaviour
 {
     JourneySceneLoader journeySceneLoader;
-    Node currentNode;
+    DepthNode currentNode;
     Sequence seq;
     MapWayPoint[] wayPoints;
+    PlayerMapHolder mapHolder;
 
     void Start()
     {
         journeySceneLoader = FindObjectOfType<JourneySceneLoader>();
+        mapHolder = FindObjectOfType<PlayerMapHolder>();
 
         StartCoroutine(InitializePosition());
     }
 
+    bool _hasArrive = false;
+    MapWayPoint _targetWP = null;
+    void Update()
+    {
+        if (_hasArrive)
+        {
+            _targetWP.ReachDestinationAction();
+            _hasArrive = false;
+        }
+    }
     IEnumerator InitializePosition()
     {
         // Wait till map ready
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
-        currentNode = journeySceneLoader.GetMapStartingNode();
-        this.transform.position = currentNode.gameObject.transform.position;
+        while (journeySceneLoader.GetGraph() == null)
+            yield return null;
 
-        wayPoints = FindObjectsOfType<MapWayPoint>();
-        UpdateNode(currentNode);
+        yield return null;
+
+        if (mapHolder)
+        {
+            this.transform.position = mapHolder.GetPlayerStartingPosition();
+            this.currentNode = (DepthNode) mapHolder.GetPlayerNode();
+        }
+        else
+        {
+            currentNode = journeySceneLoader.GetMapStartingNode();
+            this.transform.position = currentNode.gameObject.transform.position;
+
+            wayPoints = FindObjectsOfType<MapWayPoint>();
+            UpdateNode(currentNode);
+        }
     }
 
     public float jumpPower = 2;
     public float moveSpeed = 5f;
     public float jumpDistance = 5f;
-    //TODO: Write to separate component class
-    public bool MoveToNode(Node target, System.Action OnArriveFunc)
+    //TODO: Write to separate component class ?
+   
+    public bool MoveToNode(Node target, MapWayPoint waypoint)
     {
+        _targetWP = waypoint;
+
         // Find all RouteMono
         RouteMonobehavior[] routesMono = FindObjectsOfType<RouteMonobehavior>();
 
-        if(currentNode.IsConnectedTo(target) & target != currentNode)
+        if (currentNode.IsConnectedTo(target) & target != currentNode)
         {
             // Find which routeMono contain this two nodes
             RouteMonobehavior routeMono = null;
@@ -67,8 +95,9 @@ public class PlayerAvatar : MonoBehaviour
                 seq.Append(this.transform.DOJump(pos, jumpPower, 1, durationPerJump));
             seq.AppendCallback(() => {
                 UpdateNode(target);
-                if (OnArriveFunc != null)
-                    OnArriveFunc();
+                _hasArrive = true;
+                Debug.Log("Player has arrive " + _hasArrive);
+                //waypoint.ReachDestinationAction();  // <- This for some reason, CANNOT trigger AFTER a new scene. Only works for the original scene in editor.
             });
 
             return true;
@@ -78,35 +107,25 @@ public class PlayerAvatar : MonoBehaviour
             Debug.Log("Target node not connected");
             return false;
         }
+
     }
 
-    [Button("MovePlayer", ButtonSizes.Large)]
-    public void _TestMove()
-    {
-        MapWayPoint[] waypoints = FindObjectsOfType<MapWayPoint>();
-        PlayerAvatar avatar = FindObjectOfType<PlayerAvatar>();
-        //MapWayPoint wp = waypoints[Random.Range(0, waypoints.Length)];
-        foreach (var wp in waypoints)
-        {
-            if (avatar.currentNode.IsConnectedTo(wp.GetNode))
-            {
-                MoveToNode(wp.GetNode, null);
-                return;
-            }
-        }
-
-        Debug.Log("Cant find connected node to player avatar");
-    }
 
     void UpdateNode(Node newNode)
     {
-        this.currentNode = newNode;
+        this.currentNode = (DepthNode) newNode;
 
         // Tell all waypoint to update
         foreach (var wp in wayPoints)
             wp.UpdatePlayerLocation(this.currentNode);
+
+        // Tell map holder
+        if (!mapHolder)
+            mapHolder = FindObjectOfType<PlayerMapHolder>();
+        mapHolder.SetPlayerNode(newNode);
+
     }
-    
+
     List<Vector3> AddSplinePosition(RouteMonobehavior routeMono, int numberOfSteps)
     {
         // Find whether the spline head. If not need to reverse the position

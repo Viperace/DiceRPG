@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class _TestMapGeneration : MonoBehaviour
 {
+    public Toggle waypointToggle;
+
     void Start()
     {
-        
+        waypointToggle.onValueChanged.AddListener(delegate {
+            ToggleWaypointCanLoadScene();
+        });
     }
 
     public void _RegenMap()
@@ -19,6 +24,14 @@ public class _TestMapGeneration : MonoBehaviour
         if (poi) Destroy(poi);
 
         // Gen New
-        FindObjectOfType<JourneySceneLoader>().GenerateMap();
+        FindObjectOfType<JourneySceneLoader>().GenerateNewMap();
+    }
+
+    void ToggleWaypointCanLoadScene()
+    {
+        MapWayPoint[] waypoints = FindObjectsOfType<MapWayPoint>();
+        foreach (var wp in waypoints)
+            wp.allowLoadScene = waypointToggle.isOn;
+
     }
 }

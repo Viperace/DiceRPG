@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
         // Do kill player
         playerStat = PlayerStat.CreateNewPlayer();
         journeyLog = new JourneyLog();
+
+        // Delete map
+        PlayerMapHolder map = FindObjectOfType<PlayerMapHolder>();
+        Destroy(map.gameObject);
     }
 }
 

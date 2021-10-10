@@ -112,18 +112,6 @@ namespace CubeMapGenerator
 
         }
 
-        // TODEL: 
-        public void GenerateRoute(Vector3 start, Vector3 end)
-        {
-            Init();
-
-            // Redefine
-            startPoint = map.FindNearestCoordinateFromWorldPosition(start);
-            endPoint = map.FindNearestCoordinateFromWorldPosition(end);
-
-            // Gen
-            GenerateRoute();
-        }
 
         public void GenerateRoute(Vector3 start, Vector3 end, Node startNode, Node endNode)
         {
@@ -261,7 +249,13 @@ namespace CubeMapGenerator
 
             return spline;
         }
+
+        #region
+        public GameObject Holder { get { return gameObjectHolder; } }
+        #endregion
+
     }
+
 
     public enum RoutePerturbationStyle
     {
@@ -270,5 +264,6 @@ namespace CubeMapGenerator
         NoPerturbation, // Fixed
         LeftArc,        // Perturb to the left only
         RightArc,
+        RandomArc
     }
 }

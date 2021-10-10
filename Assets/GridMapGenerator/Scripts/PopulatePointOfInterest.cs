@@ -119,6 +119,7 @@ namespace CubeMapGenerator
 
         }
 
+        [SerializeField] int minimumDistance = 2;  // Min distance (in grid) between each POI
         //Dictionary<Node, Coordinate> ComputePositionToPlace(GraphWithDepthNode graph)
         List<Coordinate> ComputePositionToPlace(GraphWithDepthNode graph)
         {
@@ -182,11 +183,13 @@ namespace CubeMapGenerator
                 Debug.LogError("not enough coord");
 
             // Filter for the distance
-            // 1st pass
-            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 3);
-
+            
+            if (minimumDistance > 2)
+            {   // Do a pre-pass
+                allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, minimumDistance - 1);                
+            }
             // 2nd pass
-            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 6);
+            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, minimumDistance);
 
             // Clamp all coordinate bound
             for (int i = 0; i < allCoords.Count; i++)
@@ -407,6 +410,10 @@ namespace CubeMapGenerator
             }
 
         }
+
+        #region Getter
+        public GameObject Holder { get { return gameObjectHolder; } }
+        #endregion
 
         public enum PointOfInterestLocationType
         {
