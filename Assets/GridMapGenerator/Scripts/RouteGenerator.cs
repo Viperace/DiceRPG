@@ -10,7 +10,8 @@ namespace CubeMapGenerator
     [ExecuteAlways]
     public class RouteGenerator : MonoBehaviour
     {
-        public int numberOfIntermediatePoints;
+        //public int numberOfIntermediatePoints;
+        public float distancePerWaypoint = 30f;     // Waypoint occur every X distance
         public float averageDistancePerWaypoint; // In terms of coordinates
         public float varianceOfDistancePerWaypoint;
 
@@ -147,7 +148,10 @@ namespace CubeMapGenerator
 
             //** Generate intermediate points, (at coordinate level)
             // Distance per intermediate segment
+            
             float totalDist = Vector2.Distance(xEnd, xStart);
+
+            int numberOfIntermediatePoints = Mathf.CeilToInt(totalDist / distancePerWaypoint);
             float pctDistPerSegment = 1 / ((float)numberOfIntermediatePoints + 1);            
             for (int i = 0; i < numberOfIntermediatePoints; i++)
             {
@@ -200,6 +204,8 @@ namespace CubeMapGenerator
                     return dirPerp;
                 case RoutePerturbationStyle.RightArc:
                     return -dirPerp;
+                case RoutePerturbationStyle.RandomArc:
+                    return eps * dirPerp;
                 default:
                     return dirPerp;
             }
@@ -223,6 +229,8 @@ namespace CubeMapGenerator
                 case RoutePerturbationStyle.LeftArc:
                     return pct * perturbModifier * totalLength;
                 case RoutePerturbationStyle.RightArc:
+                    return pct * perturbModifier * totalLength;
+                case RoutePerturbationStyle.RandomArc:
                     return pct * perturbModifier * totalLength;
                 default:
                     return 0;
@@ -256,14 +264,14 @@ namespace CubeMapGenerator
 
     }
 
-
     public enum RoutePerturbationStyle
     {
-        LengthDependent, // The longer the distance, the more perturb
+        LengthDependent,    // The longer the distance, the more perturb
         Random,
-        NoPerturbation, // Fixed
-        LeftArc,        // Perturb to the left only
+        NoPerturbation,     // Fixed
+        LeftArc,            // Perturb to the left only
         RightArc,
-        RandomArc
+        RandomArc           // Same as left/right,
     }
+
 }

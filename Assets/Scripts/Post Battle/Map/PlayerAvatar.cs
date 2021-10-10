@@ -68,7 +68,8 @@ public class PlayerAvatar : MonoBehaviour
         // Find all RouteMono
         RouteMonobehavior[] routesMono = FindObjectsOfType<RouteMonobehavior>();
 
-        if (currentNode.IsConnectedTo(target) & target != currentNode)
+        if (currentNode.IsConnectedTo(target) & target != currentNode &  // Must be 1) connected, 2) not own node, 3) must be more deep
+            ( ((DepthNode) target).depth > ((DepthNode)currentNode).depth))
         {
             // Find which routeMono contain this two nodes
             RouteMonobehavior routeMono = null;
