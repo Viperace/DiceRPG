@@ -47,4 +47,4 @@ MonoBehaviour:
     deAudioEnabled: 0
     deUnityExtendedEnabled: 0
   showPlayingTweens: 0
-  showPausedTweens: 0
+  showPausedTweens: 1

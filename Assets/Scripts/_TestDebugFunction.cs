@@ -55,6 +55,13 @@ public class _TestDebugFunction : MonoBehaviour
 
     }
 
+    public void AddRandomGear()
+    {
+        GearDice g = GearDiceDatabase.Instance.GetRandomizeGearInstance();
+        Player.playerStat.AddDice(g);
+
+    }
+
     public void Add1000Coins()
     {
         Player.playerStat.Gold += 1000;

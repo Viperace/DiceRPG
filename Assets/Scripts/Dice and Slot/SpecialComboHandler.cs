@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Linq;
 
 public class SpecialComboHandler : MonoBehaviour
 {
@@ -31,18 +32,24 @@ public class SpecialComboHandler : MonoBehaviour
     public List<DiceSpecialCombo> GetTriggeredCombos(int[] diceValues)
     {
         // Check which combo trigger
-        List<DiceSpecialCombo> triggeredCombo = new List<DiceSpecialCombo>();
+        //List<DiceSpecialCombo> triggeredCombo = new List<DiceSpecialCombo>();
+        Dictionary<DiceSpecialComboEnum, DiceSpecialCombo> triggeredComboDict = new Dictionary<DiceSpecialComboEnum, DiceSpecialCombo>();
         foreach (var combo in availableCombos)
         {
+            DiceSpecialComboEnum comboEnum = DiceSpecialCombo.GetEnum(combo);
+
             // Check validity
             if (combo.IsValid(diceValues) && combo.IsTrigger(diceValues))
             {
-                // Record all triggered combo, do effect later
-                triggeredCombo.Add(combo);
+                if (!triggeredComboDict.ContainsKey(combo.GetEnum()))
+                {
+                    // Record all triggered combo, do effect later
+                    triggeredComboDict.Add(comboEnum, combo);
+                }
             }
         }
 
-        return triggeredCombo;
+        return triggeredComboDict.Values.ToList();
     }
 
     public void Handle(int[] diceValues)

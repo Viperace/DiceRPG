@@ -13,7 +13,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 60
+   "GoldCost": 40
  },
  {
    "Name": "Broom",
@@ -27,7 +27,7 @@
    "CanDefend": 1,
    "Combo": "straight",
    "ComboParam": "",
-   "GoldCost": 30
+   "GoldCost": 45
  },
  {
    "Name": "Club",
@@ -41,7 +41,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 40
+   "GoldCost": 50
  },
  {
    "Name": "Hammer",
@@ -55,7 +55,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 60
+   "GoldCost": 75
  },
  {
    "Name": "Axe",
@@ -69,7 +69,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 50
+   "GoldCost": 65
  },
  {
    "Name": "Hand Axe",
@@ -83,7 +83,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 70
+   "GoldCost": 90
  },
  {
    "Name": "Sword",
@@ -97,7 +97,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 50
+   "GoldCost": 64
  },
  {
    "Name": "Excalibur",
@@ -111,7 +111,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 80
+   "GoldCost": 101
  },
  {
    "Name": "Katana",
@@ -125,7 +125,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 70
+   "GoldCost": 89
  },
  {
    "Name": "Plank Shield",
@@ -139,7 +139,7 @@
    "CanDefend": 1,
    "Combo": "double",
    "ComboParam": "",
-   "GoldCost": 40
+   "GoldCost": 56
  },
  {
    "Name": "Chitin Shield",
@@ -153,7 +153,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 50
+   "GoldCost": 64
  },
  {
    "Name": "Half Shield",
@@ -167,7 +167,7 @@
    "CanDefend": 1,
    "Combo": "triple",
    "ComboParam": "",
-   "GoldCost": 60
+   "GoldCost": 81
  },
  {
    "Name": "Knight Shield",
@@ -181,7 +181,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 80
+   "GoldCost": 101
  },
  {
    "Name": "Viking Shield",
@@ -195,7 +195,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 70
+   "GoldCost": 89
  },
  {
    "Name": "Heater Shield",
@@ -209,7 +209,7 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 80
+   "GoldCost": 101
  }
 ]
 }

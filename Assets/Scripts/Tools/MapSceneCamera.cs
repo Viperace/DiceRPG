@@ -19,17 +19,23 @@ public class MapSceneCamera : MonoBehaviour
 
     void Start()
     {
-        
+        cam.transform.position = new Vector3(this.transform.position.x, 
+            this.transform.position.y,
+            avatar.transform.position.z);
     }
 
+
     public float moveSpeed = 5f;
+    public float boostDistance = 100f;
     bool _isFollowingMode = true;
     void LateUpdate()
     {
         // Lerp towards player pos
         if (_isFollowingMode && avatar)
         {
-            float interpolation = moveSpeed * Time.deltaTime;
+            float boost = (avatar.transform.position.z - this.transform.position.z > boostDistance) ? 10 : 1;
+
+            float interpolation = boost * moveSpeed * Time.deltaTime;
             Vector3 newPosition = cam.transform.position;
             newPosition.z = Mathf.Lerp(cam.transform.position.z, avatar.transform.position.z + offsetFromAvatar.z, interpolation);
 

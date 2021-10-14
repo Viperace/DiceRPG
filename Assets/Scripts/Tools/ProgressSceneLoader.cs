@@ -38,12 +38,12 @@ public class ProgressSceneLoader : MonoBehaviour
 
         while (!operation.isDone)
         {
-            if (operation.progress < 0.5f)
+            if (operation.progress < 0.8f)
             {
                 UpdateProgressUI(operation.progress);
                 yield return null;
             }
-            else if(operation.progress < 0.85f)
+            else if(operation.progress < 0.9f)
             {
                 // Do fake show
                 float fakeProgress = 0.5f;
@@ -70,7 +70,7 @@ public class ProgressSceneLoader : MonoBehaviour
 
     void UpdateProgressUI(float progress)
     {
-        slider.value = progress;
+        slider.value = progress * 100f;
         progressText.text = string.Concat((int)(progress * 100f), "%");
     }
 }

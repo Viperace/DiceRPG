@@ -200,12 +200,32 @@ public class RandomGearReward : ChoiceReward
 
         if (candidates.Count == 0)
         {
-            Debug.LogWarning("Cant find suitable gear. Random select one");
-            return GearDiceDatabase.Instance.GearsDictionary["Knight Shield"];
-        }
+            // Random select anything below this value
+            int maxRange = this.gearValue + 2 * valueRange;
+            candidates = new List<GearDice>();
+            foreach (var item in GearDiceDatabase.Instance.GearsDictionary.Values)
+                if (gearValue <= maxRange)
+                    candidates.Add(item);
 
-        int roll = Random.Range(0, candidates.Count);
-        return candidates[roll];
+            if (candidates.Count > 0)
+            {
+                Debug.LogWarning("Cant find suitable gear. Random select one");
+
+                int roll = Random.Range(0, candidates.Count);
+                return candidates[roll];
+            }
+            else
+            {
+                Debug.LogWarning("Still Cant find suitable gear. Give Knigh shield");
+                return GearDiceDatabase.Instance.GearsDictionary["Knight Shield"];
+            }
+            
+        }
+        else
+        {
+            int roll = Random.Range(0, candidates.Count);
+            return candidates[roll];
+        }
     }
 
     public void ApplyReward(PlayerStat player)

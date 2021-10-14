@@ -576,7 +576,19 @@ public static class CoordinateMath
     //    return output;
     //}
 
-    public static List<Coordinate> MinimumDistanceFilter(List<Coordinate> coords, int threshold, int maxIteration = 300)
+    public static List<Coordinate> MinimumDistanceFilterBrute(List<Coordinate> coords, int threshold, ref bool IsGood)
+    {
+        IsGood = false;
+        List<Coordinate> filterCoords = null;
+        while (!IsGood)
+        {
+            filterCoords = MinimumDistanceFilter(coords, threshold, ref IsGood, 100);
+        }
+
+        return filterCoords;
+    }
+
+    public static List<Coordinate> MinimumDistanceFilter(List<Coordinate> coords, int threshold, ref bool IsGood, int maxIteration = 300)
     {
         // Create Instances
 
@@ -663,7 +675,12 @@ public static class CoordinateMath
         Coordinate[] _test = FindMinimumDistanceCoords(output);
         float _dist = Coordinate.Distance(_test[0], _test[1]);
         if (_dist < threshold)
+        {
             Debug.LogWarning("Algo still given large distance");
+            IsGood = false;
+        }
+        else
+            IsGood = true;
 
         return output;
     }

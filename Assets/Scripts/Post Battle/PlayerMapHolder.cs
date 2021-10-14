@@ -28,10 +28,13 @@ public class PlayerMapHolder : MonoBehaviour
    
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != activateScene)
-            this.gameObject.SetActive(false);
-        else
-            this.gameObject.SetActive(true);
+        if (this != null)
+        {
+            if (scene.name != activateScene)
+                this.gameObject.SetActive(false);
+            else
+                this.gameObject.SetActive(true);
+        }
     }
 
     public void SetGraph(Graph graph) => this.graph = graph;    

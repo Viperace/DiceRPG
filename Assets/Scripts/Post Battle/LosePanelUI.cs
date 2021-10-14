@@ -7,9 +7,17 @@ public class LosePanelUI : MonoBehaviour
 {
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text journeyText;
-    void Start()
+    [SerializeField] GameObject continueButton;
+
+    void OnEnable()
     {
-        
+        if (Player.playerStat != null)
+        {
+            if (Player.journeyLog.Length <= 6)
+                continueButton.gameObject.SetActive(true);
+            else
+                continueButton.gameObject.SetActive(false);
+        }
     }
 
     void Update()

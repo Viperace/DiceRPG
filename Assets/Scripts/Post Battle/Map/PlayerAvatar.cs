@@ -9,9 +9,9 @@ public class PlayerAvatar : MonoBehaviour
 {
     JourneySceneLoader journeySceneLoader;
     DepthNode currentNode;
-    Sequence seq;
     MapWayPoint[] wayPoints;
     PlayerMapHolder mapHolder;
+    Sequence seq;
 
     void Start()
     {
@@ -31,6 +31,7 @@ public class PlayerAvatar : MonoBehaviour
             _hasArrive = false;
         }
     }
+
     IEnumerator InitializePosition()
     {
         // Wait till map ready
@@ -41,6 +42,7 @@ public class PlayerAvatar : MonoBehaviour
 
         yield return null;
 
+        wayPoints = FindObjectsOfType<MapWayPoint>();
         if (mapHolder)
         {
             this.transform.position = mapHolder.GetPlayerStartingPosition();
@@ -51,7 +53,6 @@ public class PlayerAvatar : MonoBehaviour
             currentNode = journeySceneLoader.GetMapStartingNode();
             this.transform.position = currentNode.gameObject.transform.position;
 
-            wayPoints = FindObjectsOfType<MapWayPoint>();
             UpdateNode(currentNode);
         }
     }
@@ -88,18 +89,41 @@ public class PlayerAvatar : MonoBehaviour
 
             // Calc duration per steps
             float durationPerJump = distance / numberOfSteps / moveSpeed;
+            float totalDuration = distance / moveSpeed;
 
             // Tween it to move
-            seq.Kill();
+            int _test = ((DepthNode)target).depth;
+            DOTween.Kill(_test, true);
+
             seq = DOTween.Sequence();
+            seq.SetId(_test);
             foreach (var pos in positions)
                 seq.Append(this.transform.DOJump(pos, jumpPower, 1, durationPerJump));
-            seq.AppendCallback(() => {
-                UpdateNode(target);
-                _hasArrive = true;
-                Debug.Log("Player has arrive " + _hasArrive);
-                //waypoint.ReachDestinationAction();  // <- This for some reason, CANNOT trigger AFTER a new scene. Only works for the original scene in editor.
-            });
+            //seq.AppendCallback(() => {
+            //    UpdateNode(target);
+            //    _hasArrive = true;
+            //    Debug.Log("Player has arrive " + _hasArrive);
+            //    //waypoint.ReachDestinationAction();  // <- This for some reason, CANNOT trigger AFTER a new scene. Only works for the original scene in editor.
+            //});
+
+            StartCoroutine(ArriveCallback(totalDuration + 0.2f, target));
+            //Sequence seq2 = DOTween.Sequence();
+            //seq2.PrependInterval(totalDuration);
+            //seq2.OnComplete(() => {
+            //    UpdateNode(target);
+            //    _hasArrive = true;
+            //    Debug.Log("Player has arrive " + _hasArrive);
+            //});
+
+            // FUCK IT. TODO:
+            // Implement 'time-sensitive' arrival.
+
+            //seq.AppendCallback(() => {
+            //    UpdateNode(target);
+            //    _hasArrive = true;
+            //    Debug.Log("Player has arrive " + _hasArrive);
+            //    //waypoint.ReachDestinationAction();  // <- This for some reason, CANNOT trigger AFTER a new scene. Only works for the original scene in editor.
+            //});
 
             return true;
         }
@@ -111,6 +135,14 @@ public class PlayerAvatar : MonoBehaviour
 
     }
 
+    IEnumerator ArriveCallback(float delay, Node target)
+    {
+        yield return new WaitForSeconds(delay);
+
+        UpdateNode(target);
+        _hasArrive = true;
+        Debug.Log("Player has arrive " + _hasArrive);
+    }
 
     void UpdateNode(Node newNode)
     {

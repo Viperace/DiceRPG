@@ -132,77 +132,73 @@ namespace CubeMapGenerator
 
             CoordinateBound mapBound = map.GetBound();
 
-            // Generate coord first
-            /* We breakdown map in axis-Y based on depth level, orderly.
-             * For each dept level, we spawn the corresponding nodes only
-             * So, node at lower depth must have lower Y value than nodes with higher depth
-             * 
-             * We decide number of area = Ylength / depth level. Then each area populate with nodes of the same depths
-             * 
-             * For each area, we generate points that are at far enough apart
-             */
-            float mapLength = mapBound.upper.y - mapBound.lower.y;
-            float yLengthPerDepthLevel = mapLength / ((float)maxDepth);
-            Coordinate _startingLower = map.GetBound().lower;
-            Coordinate _startingUpper = new Coordinate(map.GetBound().upper.x, _startingLower.y + yLengthPerDepthLevel);
-            CoordinateBound smallArea = new CoordinateBound(_startingLower, _startingUpper);
-
-            List<Coordinate> allCoords = new List<Coordinate>();
-            Dictionary<Node, Coordinate> coordNodeDict = new Dictionary<Node, Coordinate>();
-            for (int i = 0; i < numberOfDepth; i++)
+            while (true)
             {
-                Node[] nodes = graph.GetNodesAtDepth(i).ToArray();
-                for (int j = 0; j < nodes.Length; j++)
-                {
-                    int _counter = 0;
-                    while (true)
-                    {
-                        // Generate random point within this area, but must not repeat ! If repeat, keep looping till can find
-                        int nx = Random.Range((int)smallArea.lower.x, (int)smallArea.upper.x + 1);
-                        int ny = Random.Range((int)smallArea.lower.y, (int)smallArea.upper.y + 1);
-                        Coordinate point = new Coordinate(nx, ny);
+                // Generate coord first
+                /* We breakdown map in axis-Y based on depth level, orderly.
+                 * For each dept level, we spawn the corresponding nodes only
+                 * So, node at lower depth must have lower Y value than nodes with higher depth
+                 * 
+                 * We decide number of area = Ylength / depth level. Then each area populate with nodes of the same depths
+                 * 
+                 * For each area, we generate points that are at far enough apart
+                 */
+                float mapLength = mapBound.upper.y - mapBound.lower.y;
+                float yLengthPerDepthLevel = mapLength / ((float)maxDepth);
+                Coordinate _startingLower = map.GetBound().lower;
+                Coordinate _startingUpper = new Coordinate(map.GetBound().upper.x, _startingLower.y + yLengthPerDepthLevel);
+                CoordinateBound smallArea = new CoordinateBound(_startingLower, _startingUpper);
 
-                        if (!allCoords.Contains(point) || _counter > 200)
+                List<Coordinate> allCoords = new List<Coordinate>();
+                Dictionary<Node, Coordinate> coordNodeDict = new Dictionary<Node, Coordinate>();
+                for (int i = 0; i < numberOfDepth; i++)
+                {
+                    Node[] nodes = graph.GetNodesAtDepth(i).ToArray();
+                    for (int j = 0; j < nodes.Length; j++)
+                    {
+                        int _counter = 0;
+                        while (true)
                         {
-                            allCoords.Add(point);
-                            coordNodeDict.Add(nodes[j], point);
-                            break;
+                            // Generate random point within this area, but must not repeat ! If repeat, keep looping till can find
+                            int nx = Random.Range((int)smallArea.lower.x, (int)smallArea.upper.x + 1);
+                            int ny = Random.Range((int)smallArea.lower.y, (int)smallArea.upper.y + 1);
+                            Coordinate point = new Coordinate(nx, ny);
+
+                            if (!allCoords.Contains(point) || _counter > 200)
+                            {
+                                allCoords.Add(point);
+                                coordNodeDict.Add(nodes[j], point);
+                                break;
+                            }
+                            _counter++;
                         }
-                        _counter++;
                     }
+
+                    // Shift bound
+                    smallArea.ShiftYBy(yLengthPerDepthLevel);
+
+                    // Clamp
+                    smallArea.ClampTo(mapBound);
                 }
 
-                // Shift bound
-                smallArea.ShiftYBy(yLengthPerDepthLevel);
+                if (allCoords.Count < graph.NumberOfNodes)
+                    Debug.LogError("not enough coord");
 
-                // Clamp
-                smallArea.ClampTo(mapBound);
+                // Filter for the distance
+                bool isGood = false;
+                allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, minimumDistance - 1, ref isGood);
+
+                // Clamp all coordinate bound
+                for (int i = 0; i < allCoords.Count; i++)
+                {
+                    if (!mapBound.IsWithinBound(allCoords[i])) // Set it to bound if not
+                        allCoords[i] = mapBound.ClampCoordinateWithinBound(allCoords[i]);
+                }
+
+                // Exit condition
+                if (isGood)
+                    return allCoords;
             }
-
-            if (allCoords.Count < graph.NumberOfNodes)
-                Debug.LogError("not enough coord");
-
-            // Filter for the distance
-            
-            if (minimumDistance > 2)
-            {   // Do a pre-pass
-                allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, minimumDistance - 1);                
-            }
-            // 2nd pass
-            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, minimumDistance);
-
-            // Clamp all coordinate bound
-            for (int i = 0; i < allCoords.Count; i++)
-            {
-                if (!mapBound.IsWithinBound(allCoords[i])) // Set it to bound if not
-                    allCoords[i] = mapBound.ClampCoordinateWithinBound(allCoords[i]);
-            }
-
-            // FIX ME
-            // Can I just do like this?
-            
-
-            return allCoords;
         }
 
         List<Coordinate> SuggestRandomPoints()
@@ -365,10 +361,11 @@ namespace CubeMapGenerator
 
             // Filter for the distance
             // 1st pass
-            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 3);
+            bool isGood = false;
+            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 3, ref isGood);
 
             // 2nd pass
-            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 6);
+            allCoords = CoordinateMath.MinimumDistanceFilter(allCoords, 6, ref isGood);
 
             // Clamp all coordinate bound
             for (int i = 0; i < allCoords.Count; i++)           

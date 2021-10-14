@@ -240,7 +240,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9076608498131798874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3403fd612eee73d4d99d8c4e25a10121, type: 3}
   m_Name: 
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseUIprefab: {fileID: 4356042821633674226, guid: e672698b83b2ec64e998af0872791113, type: 3}
   isPutBaseUI: 1
+  representedJourney: 0
 --- !u!136 &7770226753277700267
 CapsuleCollider:
   m_ObjectHideFlags: 0

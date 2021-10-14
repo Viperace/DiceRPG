@@ -75,7 +75,9 @@ public class MapWayPoint : MonoBehaviour
     public void ReachDestinationAction()
     {
         Debug.Log("Hit Reach ReachDestinationAction ");
-        if (!allowLoadScene) return; 
+        if (!allowLoadScene) return;
+
+        UpdateJourney();
 
         switch (representedJourney)
         {
@@ -98,6 +100,38 @@ public class MapWayPoint : MonoBehaviour
                 break;
             case JourneyEnum.ChoiceReward:
                 MySceneManager.Instance.LoadRewardScene();
+                break;
+            default:
+                break;
+        }
+    }
+
+    void UpdateJourney()
+    {
+        JourneyUIManager journeyUImanager = FindObjectOfType<JourneyUIManager>();
+
+        switch (representedJourney)
+        {
+            case JourneyEnum.CombatEncounter:
+                journeyUImanager.AddFightJourneyRecord();
+                break;
+            case JourneyEnum.BossEncounter:
+                journeyUImanager.AddFightJourneyRecord();
+                break;
+            case JourneyEnum.Tavern:
+                journeyUImanager.AddTavernJourneyRecord();
+                break;
+            case JourneyEnum.Shop:
+                journeyUImanager.AddShopJourneyRecord();
+                break;
+            case JourneyEnum.Shrine:
+                journeyUImanager.AddShrineJourneyRecord();
+                break;
+            case JourneyEnum.Blacksmith:
+                journeyUImanager.AddBlacksmithJourneyRecord();
+                break;
+            case JourneyEnum.ChoiceReward:
+                journeyUImanager.AddRewardJourneyRecord();
                 break;
             default:
                 break;

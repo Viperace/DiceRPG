@@ -25,11 +25,18 @@ public class MySceneManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    ProgressSceneLoader progressSceneLoader;
+    void Start()
+    {
+        //progressSceneLoader = this.GetComponent<ProgressSceneLoader>();
+        progressSceneLoader = FindObjectOfType<ProgressSceneLoader>();
+    }
+
     public void LoadGeneral(string scenename)
     {
-        ProgressSceneLoader progressSceneLoader = GetComponent<ProgressSceneLoader>();
         Debug.Log("sceneName to load: " + scenename);
-        
+
+        progressSceneLoader = FindObjectOfType<ProgressSceneLoader>();
         progressSceneLoader.LoadScene(scenename);
     }
 

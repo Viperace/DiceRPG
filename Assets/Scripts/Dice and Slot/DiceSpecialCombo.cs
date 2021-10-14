@@ -71,6 +71,28 @@ public abstract class DiceSpecialCombo
         return GetComboFromEnum(trialComboEnum, param1);
     }
 
+    public static DiceSpecialComboEnum GetEnum(DiceSpecialCombo combo)
+    {
+        if (combo is Straight)
+            return DiceSpecialComboEnum.Straight;
+        else if(combo is DoubleCombo)
+            return DiceSpecialComboEnum.Double;
+        else if (combo is TripleCombo)
+            return DiceSpecialComboEnum.Triple;
+        else if (combo is FourOfAKindCombo)
+            return DiceSpecialComboEnum.FourOfAKindCombo;
+        else if (combo is AllSameCombo)
+            return DiceSpecialComboEnum.AllSameCombo;
+        else if (combo is SumEqual)
+            return DiceSpecialComboEnum.SumEqual;
+        else
+            return DiceSpecialComboEnum.NONE;       
+    }
+
+    public DiceSpecialComboEnum GetEnum()
+    {
+        return GetEnum(this);
+    }
 }
 
 
@@ -79,22 +101,24 @@ public abstract class DiceSpecialCombo
 /// </summary>
 public abstract class SameNumbers : DiceSpecialCombo
 {
+    public int numberSame { get; protected set; }
     public override bool IsTrigger(params int[] rolledValue)
     {
         // Check valid
         if (!IsValid(rolledValue)) return false;
 
         // Chk straight condition
+        int count = 1;
         List<int> sortedValue = new List<int>(rolledValue);
         for (int i = 1; i < sortedValue.Count; i++)
-        {
             if (sortedValue[i] == sortedValue[i - 1])
-                continue;
-            else
-                return false;
-        }
+                count++;
 
-        return true;
+        bool _test = count >= this.numberSame;
+        if ( _test)
+            return true;
+        else
+            return false;
     }
 }
 
@@ -113,6 +137,7 @@ public class DoubleCombo : SameNumbers
 {
     public DoubleCombo()
     {
+        base.numberSame = 2;
         base.name = "Double";
         base.effectDescription = "HP +1";
         base.numberOfDiceRequired = new int[9] { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -123,6 +148,7 @@ public class TripleCombo : SameNumbers
 {
     public TripleCombo()
     {
+        base.numberSame = 3;
         base.name = "Triple";
         base.effectDescription = "Perfect Counter";
         base.numberOfDiceRequired = new int[8] { 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -138,6 +164,7 @@ public class FourOfAKindCombo : SameNumbers
 {
     public FourOfAKindCombo()
     {
+        base.numberSame = 4;
         base.name = "Quadruple";
         base.effectDescription = "God's Hammer!";
         base.numberOfDiceRequired = new int[7] { 4, 5, 6, 7, 8, 9, 10 };
@@ -146,8 +173,10 @@ public class FourOfAKindCombo : SameNumbers
 
 public class AllSameCombo : SameNumbers
 {
+
     public AllSameCombo()
     {
+        base.numberSame = 5;  // FIX ME
         base.name = "Identity";
         base.effectDescription = "Hell's Gate!";
         base.numberOfDiceRequired = new int[6] { 5, 6, 7, 8, 9, 10 };

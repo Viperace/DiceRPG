@@ -46,8 +46,19 @@ public class Player : MonoBehaviour
         journeyLog = new JourneyLog();
 
         // Delete map
-        PlayerMapHolder map = FindObjectOfType<PlayerMapHolder>();
-        Destroy(map.gameObject);
+        PlayerMapHolder map = FindObjectOfType<PlayerMapHolder>(true);
+        if(map)
+            Destroy(map.gameObject);
+    }
+
+    public void RevivePlayer()
+    {
+        // Refresh energy if too low
+        if (Player.playerStat.stamina < 10)
+            Player.playerStat.stamina = 10;
+
+        // Reload
+        MySceneManager.Instance.LoadBattleScene();
     }
 }
 
