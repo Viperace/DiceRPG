@@ -33,6 +33,20 @@ public class GearDiceBehavior : MonoBehaviour
                 break;
             }
         }
+
+        GearTextNumber[] arsenals = FindObjectsOfType<GearTextNumber>();
+        while(LinkedArsenalDice == null)
+        {
+            foreach (var g in arsenals)
+                if (g.LinkedGearDice == this.RepresentedDice)
+                {
+                    LinkedArsenalDice = g;
+                    break;
+                }
+            yield return null;
+        }
+
+        Debug.Log("Done linking. " + this.RepresentedDice.gearName + " link to " + this.LinkedArsenalDice);
     }
 
     void FindRepresentedDice()
@@ -83,10 +97,10 @@ public class GearDiceBehavior : MonoBehaviour
 
     }
 
-    public void SetLinkedArsenalDice(GearTextNumber g)
-    {
-        LinkedArsenalDice = g;
-    }
+    //public void SetLinkedArsenalDice(GearTextNumber g)
+    //{
+    //    LinkedArsenalDice = g;
+    //}
 
     void Update()
     {

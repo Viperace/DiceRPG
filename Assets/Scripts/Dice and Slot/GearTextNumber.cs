@@ -50,6 +50,8 @@ public class GearTextNumber : MonoBehaviour
                 LinkedGearDice = playerStat.gearDices[currentlyLinkedPlayerDices];
                 currentlyLinkedPlayerDices++;
                 Debug.Log(this.gameObject.name + " Link to " + LinkedGearDice.gearName);
+
+
             }
             yield return null;
         }        

@@ -3617,6 +3617,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050162051}
     m_Modifications:
+    - target: {fileID: 295081246, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 492177593}
     - target: {fileID: 8260371448371923935, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -5081,6 +5085,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041997211}
     m_Modifications:
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: glowQuality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: _highlighted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4099512050373827624, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5187,6 +5199,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041997211}
     m_Modifications:
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: glowQuality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: _highlighted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4099512050373827624, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7060,6 +7080,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041997211}
     m_Modifications:
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: glowQuality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: _highlighted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4099512050373827624, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8186,8 +8214,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041997211}
     m_Modifications:
-    - target: {fileID: 1981568591349942002, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: seeThrough
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: glowQuality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: _highlighted
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4099512050373827624, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
@@ -11587,6 +11623,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050162051}
     m_Modifications:
+    - target: {fileID: 295081246, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 492177593}
     - target: {fileID: 8260371448371923935, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -14858,6 +14898,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050162051}
     m_Modifications:
+    - target: {fileID: 295081246, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 492177593}
     - target: {fileID: 8260371448371923935, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -15641,6 +15685,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050162051}
     m_Modifications:
+    - target: {fileID: 295081246, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 492177593}
     - target: {fileID: 8260371448371923935, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -32570,6 +32618,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041997211}
     m_Modifications:
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: _highlighted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4099512050373827624, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -32657,10 +32709,6 @@ PrefabInstance:
     - target: {fileID: 4099512050373827627, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
       propertyPath: m_Name
       value: DiceArsenalUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4099512050373827627, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
@@ -35237,6 +35285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050162051}
     m_Modifications:
+    - target: {fileID: 295081246, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 492177593}
     - target: {fileID: 8260371448371923935, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -35281,34 +35333,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8442003463188876665, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: materials.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8442003463188876665, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 3290053246979109756, guid: 5dd70a20203a05844b8ee72b3b209ecf, type: 3}
-    - target: {fileID: 8442003463188876665, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: materials.Array.data[1]
-      value: 
-      objectReference: {fileID: -815284066557091273, guid: fea155237db5ee44e933378faa91440c, type: 3}
-    - target: {fileID: 8442003463188876665, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: materials.Array.data[2]
-      value: 
-      objectReference: {fileID: -7813238448282643198, guid: 0f911ae5e6ceaed4e8b05c85b49a824e, type: 3}
-    - target: {fileID: 8442003463188876669, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: spawnTo
-      value: 
-      objectReference: {fileID: 710311290}
-    - target: {fileID: 8442003463188876669, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: spawnFrom
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8442003463188876669, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: baseJumpStrength
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 8442003463188876669, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: spawnToEpicentor
       value: 
@@ -35316,10 +35340,6 @@ PrefabInstance:
     - target: {fileID: 8784672110360170853, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
       propertyPath: m_Name
       value: dice_blue
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784672110360170853, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e235bf6ce65d44cb53decf3bd3d403, type: 3}
