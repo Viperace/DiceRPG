@@ -13,7 +13,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 40
+   "GoldCost": 40,
+   "MinMax Sum": 6,
+   "Extra": 3.8,
+   "Total": 68
  },
  {
    "Name": "Broom",
@@ -27,7 +30,10 @@
    "CanDefend": 1,
    "Combo": "straight",
    "ComboParam": "",
-   "GoldCost": 45
+   "GoldCost": 45,
+   "MinMax Sum": 3,
+   "Extra": 8.5,
+   "Total": 47
  },
  {
    "Name": "Club",
@@ -41,7 +47,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 50
+   "GoldCost": 45,
+   "MinMax Sum": 4,
+   "Extra": 2.5,
+   "Total": 45
  },
  {
    "Name": "Hammer",
@@ -55,7 +64,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 75
+   "GoldCost": 66,
+   "MinMax Sum": 6,
+   "Extra": 3,
+   "Total": 66
  },
  {
    "Name": "Axe",
@@ -69,21 +81,27 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 65
+   "GoldCost": 57,
+   "MinMax Sum": 5,
+   "Extra": 3.5,
+   "Total": 57
  },
  {
    "Name": "Hand Axe",
    "Prefab": "SM_Wep_HandAxe_01",
    "Type": "Weapon",
    "Min": 1,
-   "Max": 6,
+   "Max": 5,
    "MaxDurability": 20,
    "MaxStar": 2,
    "CanAttack": 1,
    "CanDefend": 1,
-   "Combo": "",
+   "Combo": "SumEqual",
    "ComboParam": "",
-   "GoldCost": 90
+   "GoldCost": 78,
+   "MinMax Sum": 6,
+   "Extra": 9,
+   "Total": 78
  },
  {
    "Name": "Sword",
@@ -97,7 +115,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 64
+   "GoldCost": 57,
+   "MinMax Sum": 5,
+   "Extra": 3.5,
+   "Total": 57
  },
  {
    "Name": "Excalibur",
@@ -109,9 +130,12 @@
    "MaxStar": 3,
    "CanAttack": 1,
    "CanDefend": 1,
-   "Combo": "",
+   "Combo": "SumEqual",
    "ComboParam": "",
-   "GoldCost": 101
+   "GoldCost": 99,
+   "MinMax Sum": 8,
+   "Extra": 9.5,
+   "Total": 99
  },
  {
    "Name": "Katana",
@@ -125,7 +149,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 89
+   "GoldCost": 80,
+   "MinMax Sum": 7,
+   "Extra": 5,
+   "Total": 80
  },
  {
    "Name": "Plank Shield",
@@ -139,7 +166,10 @@
    "CanDefend": 1,
    "Combo": "double",
    "ComboParam": "",
-   "GoldCost": 56
+   "GoldCost": 55,
+   "MinMax Sum": 4,
+   "Extra": 7.5,
+   "Total": 55
  },
  {
    "Name": "Chitin Shield",
@@ -153,7 +183,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 64
+   "GoldCost": 57,
+   "MinMax Sum": 5,
+   "Extra": 3.5,
+   "Total": 57
  },
  {
    "Name": "Half Shield",
@@ -167,7 +200,10 @@
    "CanDefend": 1,
    "Combo": "triple",
    "ComboParam": "",
-   "GoldCost": 81
+   "GoldCost": 77,
+   "MinMax Sum": 6,
+   "Extra": 8.5,
+   "Total": 77
  },
  {
    "Name": "Knight Shield",
@@ -181,7 +217,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 101
+   "GoldCost": 89,
+   "MinMax Sum": 8,
+   "Extra": 4.5,
+   "Total": 89
  },
  {
    "Name": "Viking Shield",
@@ -195,7 +234,10 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 89
+   "GoldCost": 79,
+   "MinMax Sum": 7,
+   "Extra": 4.5,
+   "Total": 79
  },
  {
    "Name": "Heater Shield",
@@ -209,7 +251,248 @@
    "CanDefend": 1,
    "Combo": "",
    "ComboParam": "",
-   "GoldCost": 101
+   "GoldCost": 89,
+   "MinMax Sum": 8,
+   "Extra": 4.5,
+   "Total": 89
+ },
+ {
+   "Name": "Crystal Sword",
+   "Prefab": "Prop_CrystalSword_01",
+   "Type": "Weapon",
+   "Min": 2,
+   "Max": 5,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "straight",
+   "ComboParam": "",
+   "GoldCost": 83,
+   "MinMax Sum": 7,
+   "Extra": 6.5,
+   "Total": 83
+ },
+ {
+   "Name": "Bone Axe",
+   "Prefab": "Prop_BoneAxe_01",
+   "Type": "Weapon",
+   "Min": 1,
+   "Max": 6,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "double",
+   "ComboParam": "",
+   "GoldCost": 83,
+   "MinMax Sum": 7,
+   "Extra": 6.5,
+   "Total": 83
+ },
+ {
+   "Name": "Bow",
+   "Prefab": "Prop_Bow_01",
+   "Type": "Weapon",
+   "Min": 0,
+   "Max": 7,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 73,
+   "MinMax Sum": 7,
+   "Extra": 1.5,
+   "Total": 73
+ },
+ {
+   "Name": "Lich Sword",
+   "Prefab": "Prop_CrystalSwordDouble_01",
+   "Type": "Weapon",
+   "Min": 3,
+   "Max": 6,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "triple",
+   "ComboParam": "",
+   "GoldCost": 103,
+   "MinMax Sum": 9,
+   "Extra": 6.5,
+   "Total": 103
+ },
+ {
+   "Name": "Nature Staff",
+   "Prefab": "Prop_NatureStaff_01",
+   "Type": "Weapon",
+   "Min": 1,
+   "Max": 5,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 63,
+   "MinMax Sum": 6,
+   "Extra": 1.5,
+   "Total": 63
+ },
+ {
+   "Name": "Saber",
+   "Prefab": "Prop_Saber_01",
+   "Type": "Weapon",
+   "Min": 0,
+   "Max": 5,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 53,
+   "MinMax Sum": 5,
+   "Extra": 1.5,
+   "Total": 53
+ },
+ {
+   "Name": "Sai",
+   "Prefab": "Prop_Sai_01",
+   "Type": "Weapon",
+   "Min": 2,
+   "Max": 4,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 63,
+   "MinMax Sum": 6,
+   "Extra": 1.5,
+   "Total": 63
+ },
+ {
+   "Name": "Staff",
+   "Prefab": "Prop_Staff_01",
+   "Type": "Weapon",
+   "Min": 1,
+   "Max": 4,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 53,
+   "MinMax Sum": 5,
+   "Extra": 1.5,
+   "Total": 53
+ },
+ {
+   "Name": "Cursed Shield",
+   "Prefab": "SM_Wep_Shield_09",
+   "Type": "Shield",
+   "Min": 0,
+   "Max": 3,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "SumEqual",
+   "ComboParam": "",
+   "GoldCost": 43,
+   "MinMax Sum": 3,
+   "Extra": 6.5,
+   "Total": 43
+ },
+ {
+   "Name": "Shaman Shield",
+   "Prefab": "SM_Wep_Shield_10",
+   "Type": "Shield",
+   "Min": 1,
+   "Max": 4,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "straight",
+   "ComboParam": "",
+   "GoldCost": 63,
+   "MinMax Sum": 5,
+   "Extra": 6.5,
+   "Total": 63
+ },
+ {
+   "Name": "Fruits Knife",
+   "Prefab": "SM_Wep_Knife_01",
+   "Type": "Weapon",
+   "Min": 0,
+   "Max": 2,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 23,
+   "MinMax Sum": 2,
+   "Extra": 1.5,
+   "Total": 23
+ },
+ {
+   "Name": "Kitchen Knife",
+   "Prefab": "SM_Wep_Knife_02",
+   "Type": "Weapon",
+   "Min": 0,
+   "Max": 3,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "double",
+   "ComboParam": "",
+   "GoldCost": 43,
+   "MinMax Sum": 3,
+   "Extra": 6.5,
+   "Total": 43
+ },
+ {
+   "Name": "Harakiri",
+   "Prefab": "SM_Wep_Knife_03",
+   "Type": "Weapon",
+   "Min": 2,
+   "Max": 3,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 53,
+   "MinMax Sum": 5,
+   "Extra": 1.5,
+   "Total": 53
+ },
+ {
+   "Name": "Dagger",
+   "Prefab": "SM_Wep_Mace_03",
+   "Type": "Weapon",
+   "Min": 1,
+   "Max": 4,
+   "MaxDurability": 15,
+   "MaxStar": null,
+   "CanAttack": 1,
+   "CanDefend": 1,
+   "Combo": "",
+   "ComboParam": "",
+   "GoldCost": 53,
+   "MinMax Sum": 5,
+   "Extra": 1.5,
+   "Total": 53
  }
 ]
 }

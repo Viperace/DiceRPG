@@ -30,6 +30,9 @@ public class MySceneManager : MonoBehaviour
     {
         //progressSceneLoader = this.GetComponent<ProgressSceneLoader>();
         progressSceneLoader = FindObjectOfType<ProgressSceneLoader>();
+
+        // Fixed
+        Application.targetFrameRate = 60;
     }
 
     public void LoadGeneral(string scenename)

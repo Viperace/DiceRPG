@@ -29,9 +29,9 @@ public class _TestDebugFunction : MonoBehaviour
         Player.playerStat.HP = Mathf.Clamp(Player.playerStat.HP, 0, Player.playerStat.maxHP);
     }
 
-    public void MinusPlayerStamina()
+    public void MinusPlayerStaminaBy5()
     {
-        Player.playerStat.stamina--;
+        Player.playerStat.stamina -= 5;
     }
 
     [SerializeField] GameObject winPanel;

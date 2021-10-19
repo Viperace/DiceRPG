@@ -62,7 +62,7 @@ public class MapSceneCamera : MonoBehaviour
         // Toggle
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
             Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
-            Input.GetKey(KeyCode.Tab))
+            Input.GetKey(KeyCode.Tab) || IsTouched())
         {
             _isFollowingMode = true;
         }
@@ -70,5 +70,32 @@ public class MapSceneCamera : MonoBehaviour
             _isFollowingMode = false;
         
         // 
+    }
+
+    bool IsTouched()
+    {
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                //fingerUp = touch.position;
+                //fingerDown = touch.position;
+            }
+
+            //Detects Swipe while finger is still moving
+            if (touch.phase == TouchPhase.Moved)
+            {
+                return true;
+            }
+
+            //Detects swipe after finger is released
+            if (touch.phase == TouchPhase.Ended)
+            {
+                //fingerDown = touch.position;
+                //checkSwipe();
+            }
+        }
+
+        return false;
     }
 }

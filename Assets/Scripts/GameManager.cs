@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     SpecialComboHandler specialComboHandler;
     ButtonSelector buttonSelector;
     Player player;
+    DiceBooster diceBooster;
 
     // Round information
     GamePhase gamePhase = GamePhase.INIT;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SetupFight(0.5f));
     }
 
-    
+
     IEnumerator SetupFight(float delay)
     {
         // Wait till player
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         // Load/Create enemy
         //currentEnemy = EnemyStat.CreateTestEnemy();
-        
+
         // Enemy loading depends on current journey
         MonsterEnum m = JourneyAlgorithm.RollEnemy(Player.journeyLog);
         currentEnemy = EnemyStat.CreateNewEnemy(m);
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
         foreach (var item in views)
             item.ResetTarget();
 
-        if(enemyAnimationController)
+        if (enemyAnimationController)
             enemyAnimationController.SetupCharacter();
 
         // Setup special combo. Find all dices, and look for their combo
@@ -82,11 +83,14 @@ public class GameManager : MonoBehaviour
 
         if (_debugText)
         {
-            _debugText.text = "G0 compatible slot" + currentEnemy.gearDices[0].compatibleSlots.Count + " ," ;
+            _debugText.text = "G0 compatible slot" + currentEnemy.gearDices[0].compatibleSlots.Count + " ,";
             _debugText.text += "G1 compatible slot" + currentEnemy.gearDices[1].compatibleSlots.Count + " ,";
             _debugText.text += "G0 slot is" + currentEnemy.gearDices[0].compatibleSlots[0].ToString();
             _debugText.text += "G1 slot is" + currentEnemy.gearDices[1].compatibleSlots[0].ToString();
         }
+
+        //Booster
+        diceBooster = new DiceBooster(3);
     }
 
     IEnumerator LinkSpecialCombo()
@@ -96,7 +100,7 @@ public class GameManager : MonoBehaviour
         {
             while (item.RepresentedDice == null) // Wait till linked
                 yield return null;
-            
+
             specialComboHandler.AddCombo(item.RepresentedDice.combo);
         }
     }
@@ -115,16 +119,19 @@ public class GameManager : MonoBehaviour
 
         // Stamina-
         Player.playerStat.stamina--;
+
+        // Booster reset
+        diceBooster.Reset();
     }
 
-    IEnumerator RunNextRoundWithDelay( float delay)
+    IEnumerator RunNextRoundWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         RollDiceViewTransform[] dices = FindObjectsOfType<RollDiceViewTransform>();
         for (int i = 0; i < dices.Length; i++)
         {
-            if(i == 0)
+            if (i == 0)
                 dices[i].AnimateReset(() => RollPlayerDices()); //Only first one need to callback
             else
                 dices[i].AnimateReset();
@@ -146,7 +153,7 @@ public class GameManager : MonoBehaviour
         RollEnemyDiceAndResolve();
     }
 
-    Dictionary<GearDiceBehavior, int> playerDiceOutcome;    
+    Dictionary<GearDiceBehavior, int> playerDiceOutcome;
     public void RollPlayerDices()
     {
         //gamePhase = GamePhase.PLAYER_ROLL;
@@ -154,14 +161,14 @@ public class GameManager : MonoBehaviour
         // Roll actual number
         playerDiceOutcome = new Dictionary<GearDiceBehavior, int>();
 
-        
+
         // Animate it
         GearDiceBehavior[] gearDiceBehaviors = FindObjectsOfType<GearDiceBehavior>();
         int icount = 0; // Number of represented dice counted
         foreach (GearDiceBehavior gearDiceBehavior in gearDiceBehaviors)
-        {            
+        {
             if (gearDiceBehavior.RepresentedDice != null)
-            {                
+            {
                 int rollValue = gearDiceBehavior.RepresentedDice.Roll();
 
                 // CHECK FOR GAME CHEAT OVERRIDE
@@ -229,13 +236,23 @@ public class GameManager : MonoBehaviour
     {
         buttonSelector.HideAllButtons(0);
         buttonSelector.ShowEndBattleButton(0.5f);
+
+        // Turn off all dices
+        GameObject[] playerDices = GameObject.FindGameObjectsWithTag("PlayerDice");
+        foreach (var item in playerDices)
+            item.SetActive(false);
+
+        GameObject[] enemyDices = GameObject.FindGameObjectsWithTag("EnemyDice");
+        foreach (var item in enemyDices)
+            item.SetActive(false);
+
     }
 
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject lostPanel;
     public void EndBattleSequence()
     {
-        if (Player.playerStat.HP > 0)
+        if (Player.playerStat.HP > 0 && Player.playerStat.stamina > 0)
         {
             winPanel.SetActive(true);
             Player.journeyLog.AddNumerOfKill();
@@ -244,7 +261,7 @@ public class GameManager : MonoBehaviour
         {
             lostPanel.SetActive(true);
         }
-            
+
     }
 
     /// <summary>
@@ -267,13 +284,6 @@ public class GameManager : MonoBehaviour
         }
 
         // Overlay with Combo
-        //List<DiceSpecialCombo> combos =  specialComboHandler. GetTriggeredCombos(playerDiceOutcome.Values.ToArray());        
-        //foreach (var combo in combos)
-        //{
-        //    DiceComboEffect effect = new DiceComboEffect(combo, Player.playerStat, currentEnemy, ref playerArrangedOutcome);
-        //    if(!effect.IsEffectImmediate()) // End turn type
-        //        effect.ApplyEffect();
-        //}
         ApplyEndTurnComboEffect(playerArrangedOutcome);
 
         return playerArrangedOutcome;
@@ -297,6 +307,17 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void BoostAttack() => BoostDiceOnce(DiceSlotEnum.ATTACK);
+    public void BoostDefend() => BoostDiceOnce(DiceSlotEnum.DEFEND);
+    public void BoostDiceOnce(DiceSlotEnum slot)
+    {
+        if (diceBooster.BoostOnce(slot))
+        {
+            Player.playerStat.stamina--;
+        }
+    }
+
 
     Dictionary<DiceSlotEnum, int> enemyDiceOutcome;
     void RollEnemyDiceAndResolve()
@@ -324,9 +345,9 @@ public class GameManager : MonoBehaviour
             // Animate it
             foreach (var g in gearDiceBehaviors)
             {
-                if(g.gameObject.name == "Enemy_Attack_Dice" & d.compatibleSlots[0] == DiceSlotEnum.ATTACK)
+                if (g.gameObject.name == "Enemy_Attack_Dice" & d.compatibleSlots[0] == DiceSlotEnum.ATTACK)
                     g.GetComponent<RollDiceViewTransform>().AnimateTargetPositionRoll(rollValue);
-                else if(g.gameObject.name == "Enemy_Defend_Dice" & d.compatibleSlots[0] == DiceSlotEnum.DEFEND)
+                else if (g.gameObject.name == "Enemy_Defend_Dice" & d.compatibleSlots[0] == DiceSlotEnum.DEFEND)
                     g.GetComponent<RollDiceViewTransform>().AnimateTargetPositionRoll(rollValue);
             }
         }
@@ -339,9 +360,9 @@ public class GameManager : MonoBehaviour
                 _debugText.text += ". Def is " + enemyDiceOutcome[DiceSlotEnum.DEFEND];
                 _debugText.text += "\n";
             }
-            
+
         }
-            
+
 
         //***** Play resolution ******
         float attackAnimDelay = 4f;
@@ -377,23 +398,23 @@ public class GameManager : MonoBehaviour
         // Count first
         int enemyAttackRoll = enemyDiceOutcome[DiceSlotEnum.ATTACK];
         int playerDefendRoll = playerArrangedOutcome[DiceSlotEnum.DEFEND];
-        int playerHPLost = DiceCombatResolution.FindDefenderHPLost(enemyAttackRoll, playerDefendRoll);
+        int playerHPLost = DiceCombatResolution.FindDefenderHPLost(enemyAttackRoll, playerDefendRoll + diceBooster.boostedDefend);
         System.Action playerCallback = () => { Player.playerStat.HP -= playerHPLost; };
 
-        string textToShow = "Player HP Lost " + playerHPLost + ". Tally enemy attack/Player Defend:" + enemyAttackRoll + "/" + playerDefendRoll;
+        string textToShow = "Player HP Lost " + playerHPLost + ". Tally enemy attack/Player Defend (booster):" + enemyAttackRoll + "/" + playerDefendRoll + "(" + diceBooster.boostedDefend + ")";
         Debug.Log(textToShow);
-        if(_debugText) _debugText.text = textToShow;
+        if (_debugText) _debugText.text = textToShow;
 
         // Do animation of enemy Attack Dice attack player's defend dice 
         RollDiceViewTransform enemyAtk = enemyAttackDice.GetComponent<RollDiceViewTransform>();
         RollDiceViewTransform playerDef = defendSlots[0].GetComponentInChildren<RollDiceViewTransform>();
-        if(playerDef)
+        if (playerDef)
             enemyAtk.AnimateAttackOtherDice(playerDef.gameObject, playerCallback);
         else
             enemyAtk.AnimateAttackOtherDice(defendSlots[0].gameObject, playerCallback);
 
         // Avatar attack anim
-        if (enemyAnimationController) 
+        if (enemyAnimationController)
             enemyAnimationController.PlayAttackOnTarget(playerAnimationController);
 
         yield return new WaitForSeconds(2f);
@@ -404,11 +425,11 @@ public class GameManager : MonoBehaviour
             // Count first
             int playerAttackRoll = playerArrangedOutcome[DiceSlotEnum.ATTACK];
             int enemyDefendRoll = enemyDiceOutcome[DiceSlotEnum.DEFEND];
-            int enemyHPLost = DiceCombatResolution.FindDefenderHPLost(playerAttackRoll, enemyDefendRoll);
+            int enemyHPLost = DiceCombatResolution.FindDefenderHPLost(playerAttackRoll + diceBooster.boostedAttack, enemyDefendRoll);
             System.Action enemyCallback = () => { currentEnemy.HP -= enemyHPLost; };
 
             //textToShow = "Enemy HP Lost " + enemyHPLost + ". Tally Player attack/enemy Defend:" + playerAttackRoll + "/" + enemyDefendRoll;
-            textToShow += "Enemy HP Lost " + enemyHPLost + ". Tally Player attack/enemy Defend:" + playerAttackRoll + "/" + enemyDefendRoll;
+            textToShow += "Enemy HP Lost " + enemyHPLost + ". Tally Player attack (booster) /enemy Defend:" + playerAttackRoll + "(" + diceBooster.boostedAttack + ")/" + enemyDefendRoll;
             Debug.Log(textToShow);
             if (_debugText) _debugText.text = textToShow;
 
@@ -455,11 +476,11 @@ public class GameManager : MonoBehaviour
             {
                 enemyAnimationController.PlayDead();
                 playerAnimationController.PlayVictory();
-                
+
                 ShowEndBattleButton();
                 _hasDoDeadSequence = true;
             }
-            else if ( Player.playerStat != null && Player.playerStat.HP <= 0)  // Player die
+            else if (Player.playerStat != null && Player.playerStat.HP <= 0)  // Player die
             {
                 playerAnimationController.PlayDead();
                 enemyAnimationController.PlayTaunt();
@@ -479,6 +500,8 @@ public class GameManager : MonoBehaviour
 
     #region Getters
     public int RoundNumber { get { return roundNumber; } }
+
+    public DiceBooster GetDiceBooster {get {return diceBooster; }}
     #endregion  
 }
 
