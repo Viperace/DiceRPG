@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class BoosterChargeUI : MonoBehaviour
 {
-    Image[] chargeImages;
+    MeshRenderer[] chargeImages;
 
     void Start()
     {
-        chargeImages = GetComponentsInChildren<Image>(true);
+        chargeImages = GetComponentsInChildren<MeshRenderer>(true);
     }
 
     void Update()

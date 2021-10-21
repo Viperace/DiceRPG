@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using MyMath;
 
 public class ShopManager : MonoBehaviour
 {
@@ -34,12 +36,19 @@ public class ShopManager : MonoBehaviour
     {
         ItemsForSale = new List<GearDice>();
 
-        // Randomize
+        // Randomly select 3 items (non-repeated)
+        List<GearDice> gears = GearDiceDatabase.Instance.GearsDictionary.Values.ToList();
+        gears.Shuffle();
+
         for (int i = 0; i < 3; i++)
-        {
-            GearDice randomItem = GearDiceDatabase.Instance.GetRandomizeGearData();
-            ItemsForSale.Add(randomItem);
-        }
+            ItemsForSale.Add(gears[i]);
+
+        //// Randomize
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    GearDice randomItem = GearDiceDatabase.Instance.GetRandomizeGearData();
+        //    ItemsForSale.Add(randomItem);
+        //}
 
     }
 

@@ -8,6 +8,7 @@ public class DragObject : MonoBehaviour
     Vector3 mOffset;
     float mZcoord;
 
+    [SerializeField] Camera viewCamera;
     [SerializeField] float zAxisWhenDrag = -100f;
     [SerializeField] float zAxisWhenNotDrag = 0;
     [SerializeField] float zAxisSpeedWhenDrag = -10f; // Per sec
@@ -28,8 +29,9 @@ public class DragObject : MonoBehaviour
 
     void OnMouseDown()
     {
-        mZcoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-
+        //mZcoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mZcoord = viewCamera.WorldToScreenPoint(gameObject.transform.position).z;
+        
         mOffset = gameObject.transform.position - GetMouseWorldPos();
     }
 
@@ -55,7 +57,7 @@ public class DragObject : MonoBehaviour
     {
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = mZcoord;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        return viewCamera.ScreenToWorldPoint(mousePoint);
     }
 
     IEnumerator HandleRelease()
