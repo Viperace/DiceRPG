@@ -3971,6 +3971,7 @@ GameObject:
   - component: {fileID: 565256546}
   - component: {fileID: 565256545}
   - component: {fileID: 565256549}
+  - component: {fileID: 565256550}
   m_Layer: 5
   m_Name: ButtonBuy
   m_TagString: Untagged
@@ -4121,6 +4122,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32aa3f159cb562b4fa95718865f14c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &565256550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565256543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: fef5927e454e9af4e8d612b952d793d7, type: 3}
 --- !u!1 &622968616
 GameObject:
   m_ObjectHideFlags: 0
@@ -6386,6 +6400,7 @@ GameObject:
   - component: {fileID: 948175868}
   - component: {fileID: 948175867}
   - component: {fileID: 948175866}
+  - component: {fileID: 948175870}
   m_Layer: 5
   m_Name: ToggleShopButton
   m_TagString: Untagged
@@ -6524,6 +6539,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948175864}
   m_CullTransparentMesh: 0
+--- !u!114 &948175870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948175864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: b6d1b4a1c8da01a4ea7972b477368d6b, type: 3}
 --- !u!4 &962878656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4195409888696224, guid: 681cb6d4cd64a814fbbe1286870a0ffd, type: 3}
@@ -11183,6 +11211,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 37542601, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2673894998585658984, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
       propertyPath: m_Name
       value: MANAGER
@@ -12113,6 +12145,7 @@ GameObject:
   - component: {fileID: 1850108591}
   - component: {fileID: 1850108590}
   - component: {fileID: 1850108589}
+  - component: {fileID: 1850108592}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -12234,6 +12267,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850108587}
   m_CullTransparentMesh: 1
+--- !u!114 &1850108592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850108587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: e9a527948a488684b802ca1073891ff2, type: 3}
 --- !u!1001 &1851899516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14108,6 +14154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e277358053ed48a1b89cfbc4b9cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getHitClips: []
+  attackHitClips: []
 --- !u!1 &1117066594432040
 GameObject:
   m_ObjectHideFlags: 0

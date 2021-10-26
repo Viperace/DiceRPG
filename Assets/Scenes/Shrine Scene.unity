@@ -663,6 +663,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 37542601, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1917422682, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -14196,6 +14200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e277358053ed48a1b89cfbc4b9cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getHitClips: []
+  attackHitClips: []
 --- !u!1 &1117066594432040
 GameObject:
   m_ObjectHideFlags: 0
@@ -23470,6 +23476,7 @@ GameObject:
   - component: {fileID: 8134096576957977767}
   - component: {fileID: 8134096576957977786}
   - component: {fileID: 8134096576957977768}
+  - component: {fileID: 8134096576957977769}
   m_Layer: 5
   m_Name: ButtonEnchant
   m_TagString: Untagged
@@ -23567,6 +23574,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1939b061ad31ba6429c3a3de200a0b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8134096576957977769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134096576957977765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: ec966655d5e585c48b343f0369bd39ef, type: 3}
 --- !u!114 &8134096576957977784
 MonoBehaviour:
   m_ObjectHideFlags: 0

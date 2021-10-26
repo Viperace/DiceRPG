@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1946416867099470, guid: af888a9bf203cb2469d8da68d9780b9f, type: 3}
       propertyPath: m_Name
-      value: SM_Tile_Cube_Flat_02_Plain
+      value: SM_Tile_Cube_Flat_02_Plain Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4411077248703420, guid: af888a9bf203cb2469d8da68d9780b9f, type: 3}
       propertyPath: m_RootOrder
@@ -56,8 +56,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23390803939874884, guid: af888a9bf203cb2469d8da68d9780b9f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23390803939874884, guid: af888a9bf203cb2469d8da68d9780b9f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fd9e273c4dc19434295f097ad21244e6, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95947032237253478, guid: af888a9bf203cb2469d8da68d9780b9f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af888a9bf203cb2469d8da68d9780b9f, type: 3}

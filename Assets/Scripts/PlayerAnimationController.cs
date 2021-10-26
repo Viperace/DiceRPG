@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour, IHitable
 {
+    public AudioClip[] getHitClips;
+    public AudioClip[] attackHitClips;
+
     Animator animator;
     void Start()
     {
@@ -14,6 +17,7 @@ public class PlayerAnimationController : MonoBehaviour, IHitable
     {
         string key = Random.value > 0.5f ? "Attack1" : "Attack2";
         animator.SetTrigger(key);
+
     }
     public void PlayAttackOnTarget(IHitable target)
     {
@@ -23,11 +27,15 @@ public class PlayerAnimationController : MonoBehaviour, IHitable
 
         // Target play get hit
         hitEventCallback = () => target.PlayGetHit();
+
     }
 
     public void PlayGetHit()
     {
         animator.SetTrigger("GetHit");
+
+        AudioClip toPlay = Random.value > 0.5f ? getHitClips[0] : getHitClips[1];
+        SoundManager.Instance.Play(toPlay);
     }
 
     public void PlayDead()
@@ -46,7 +54,11 @@ public class PlayerAnimationController : MonoBehaviour, IHitable
     {
         if(hitEventCallback != null)
             hitEventCallback();
-        //Debug.Log("Player blow hit");
+
+        //
+        AudioClip toPlay = Random.value > 0.5f ? attackHitClips[0] : attackHitClips[1];
+        SoundManager.Instance.Play(toPlay);
+        Debug.Log("Player blow hit");
     }
 
     public void RangeHitEvent()

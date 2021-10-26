@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 7856418699752944373}
   - component: {fileID: 7856418699752944372}
   - component: {fileID: 6487119468229906120}
+  - component: {fileID: 6424615326584563034}
   m_Layer: 5
   m_Name: RewardButton
   m_TagString: Untagged
@@ -197,6 +198,19 @@ MonoBehaviour:
   staminaGO: {fileID: 6983411919295562593}
   hpGO: {fileID: 7855428595187130479}
   descriptionText: {fileID: 7856418700637129947}
+--- !u!114 &6424615326584563034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856418699752943882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: 5874b3cb4976bfc47aa52565aa217e8c, type: 3}
 --- !u!1 &7856418699948543910
 GameObject:
   m_ObjectHideFlags: 0

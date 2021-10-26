@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4270452025033000513}
   - component: {fileID: 4270452025033000520}
   - component: {fileID: 7886468008156341502}
+  - component: {fileID: 5983577100121433620}
   m_Layer: 5
   m_Name: GearDiceUI
   m_TagString: Untagged
@@ -181,6 +182,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPanel: {fileID: 0}
+--- !u!114 &5983577100121433620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4270452025033000527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: c4fc16bdf213ead43a32a35ebb9ee8d7, type: 3}
 --- !u!1 &8335729047861743245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4270452025033000526}
     m_Modifications:
+    - target: {fileID: 1609870411, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
+      propertyPath: rmsCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 117178158198495934, guid: 69471f368eaf90e46abd11728eec09fe, type: 3}
       propertyPath: m_Enabled
       value: 0

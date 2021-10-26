@@ -3921,6 +3921,7 @@ GameObject:
   - component: {fileID: 515041954}
   - component: {fileID: 515041953}
   - component: {fileID: 515041952}
+  - component: {fileID: 515041956}
   m_Layer: 5
   m_Name: ButtonCraftMax
   m_TagString: Untagged
@@ -4058,6 +4059,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515041950}
   m_CullTransparentMesh: 0
+--- !u!114 &515041956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515041950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: a5e0a75b4fde87944b7d18ee775caf63, type: 3}
 --- !u!1 &525901672
 GameObject:
   m_ObjectHideFlags: 0
@@ -4694,6 +4708,7 @@ GameObject:
   - component: {fileID: 629520889}
   - component: {fileID: 629520888}
   - component: {fileID: 629520887}
+  - component: {fileID: 629520891}
   m_Layer: 5
   m_Name: ButtonRepair
   m_TagString: Untagged
@@ -4831,6 +4846,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629520885}
   m_CullTransparentMesh: 0
+--- !u!114 &629520891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629520885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: d788ed06c656947449ced38e18c30ca1, type: 3}
 --- !u!4 &633361438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4339210202961242, guid: dcda32f024ad4be4fac00e3568966e56, type: 3}
@@ -10456,6 +10484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 37542601, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2673894998585658984, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
       propertyPath: m_Name
       value: MANAGER (1)
@@ -14565,7 +14597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 206.376, y: 44.406006}
+  m_AnchoredPosition: {x: 206.37604, y: 44.406006}
   m_SizeDelta: {x: 413.722, y: 88.807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1832655406
@@ -14765,6 +14797,7 @@ GameObject:
   - component: {fileID: 1850108591}
   - component: {fileID: 1850108590}
   - component: {fileID: 1850108589}
+  - component: {fileID: 1850108592}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -14886,6 +14919,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850108587}
   m_CullTransparentMesh: 1
+--- !u!114 &1850108592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850108587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: b630bb9d4fb47ac4dabe35750da99e83, type: 3}
 --- !u!1001 &1851899516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15048,6 +15094,7 @@ GameObject:
   - component: {fileID: 1865973718}
   - component: {fileID: 1865973717}
   - component: {fileID: 1865973720}
+  - component: {fileID: 1865973721}
   m_Layer: 5
   m_Name: AddSlotButton
   m_TagString: Untagged
@@ -15185,6 +15232,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073ffb8466ed3fe4e812ffcd7a4c5f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1865973721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865973715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: 658ce72171218494eb9d8b692c097a67, type: 3}
 --- !u!21 &1915483063
 Material:
   serializedVersion: 6
@@ -15850,6 +15910,7 @@ GameObject:
   - component: {fileID: 1967694237}
   - component: {fileID: 1967694236}
   - component: {fileID: 1967694239}
+  - component: {fileID: 1967694240}
   m_Layer: 5
   m_Name: AddSlotButton
   m_TagString: Untagged
@@ -15986,6 +16047,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073ffb8466ed3fe4e812ffcd7a4c5f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1967694240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967694234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: 658ce72171218494eb9d8b692c097a67, type: 3}
 --- !u!1 &1968276095
 GameObject:
   m_ObjectHideFlags: 0
@@ -17142,6 +17216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e277358053ed48a1b89cfbc4b9cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getHitClips: []
+  attackHitClips: []
 --- !u!1 &1117066594432040
 GameObject:
   m_ObjectHideFlags: 0
@@ -26417,6 +26493,7 @@ GameObject:
   - component: {fileID: 8134096576957977784}
   - component: {fileID: 8134096576957977767}
   - component: {fileID: 8134096576957977786}
+  - component: {fileID: 8134096576957977768}
   m_Layer: 5
   m_Name: ButtonCraftMin
   m_TagString: Untagged
@@ -26501,6 +26578,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8134096576957977768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134096576957977765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf8937a13623cb4194863489a3526bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickClip: {fileID: 8300000, guid: d2222cc311307a648be7ddda19563d38, type: 3}
 --- !u!114 &8134096576957977784
 MonoBehaviour:
   m_ObjectHideFlags: 0

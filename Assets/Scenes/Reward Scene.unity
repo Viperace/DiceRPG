@@ -10517,6 +10517,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 37542601, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 358585649, guid: e45b43be12c2de1438ba18f20382fca0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -14345,6 +14349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e277358053ed48a1b89cfbc4b9cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getHitClips: []
+  attackHitClips: []
 --- !u!1 &1117066594432040
 GameObject:
   m_ObjectHideFlags: 0
